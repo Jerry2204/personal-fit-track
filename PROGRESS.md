@@ -1,12 +1,12 @@
 # FitTrack Pro — Progress Tracker
 
-> **Last updated:** 2026-06-12
+> **Last updated:** 2026-06-12 (scaffolding completed)
 
 ---
 
 ## Project Status
 
-- **Phase:** 0 — Project Scaffolding (not started)
+- **Phase:** 0 — Project Scaffolding (completed)
 - **Status:** Greenfield — no business features implemented
 
 ---
@@ -15,9 +15,9 @@
 
 | Layer | Technology | Status |
 |-------|-----------|--------|
-| Frontend | Next.js 18+, React 18+, TypeScript, Tailwind CSS, Shadcn UI | Not scaffolded |
-| Backend | NestJS 11+, TypeScript, Prisma ORM, JWT Auth | Not scaffolded |
-| Database | PostgreSQL 18 via Docker | Not configured |
+| Frontend | Next.js 16.2.9, React 19.2.4, TypeScript 5.9.3, Tailwind CSS 4.3.0 | Scaffolded ✅ |
+| Backend | NestJS 11.x, TypeScript 5.x, Prisma ORM | Scaffolded ✅ |
+| Database | PostgreSQL via Docker | Not configured |
 | Charts | Recharts | Not installed |
 | Data Fetching | TanStack Query | Not installed |
 | Client State | Zustand | Not installed |
@@ -29,10 +29,14 @@
 
 - [x] Project brief defined (`docs/PROJECT_BRIEF.md`)
 - [x] Agent guide with conventions (`AGENTS.md`)
-- [x] `backend/` directory created (empty)
-- [x] `frontend/` directory created (empty)
-- [x] Root monorepo structure initialized
 - [x] Progress tracker created (`PROGRESS.md`)
+- [x] NestJS backend scaffolded in `backend/`
+- [x] Next.js frontend scaffolded in `frontend/`
+- [x] Root `.gitignore` created
+- [x] Root `package.json` with pnpm workspaces created
+- [x] `pnpm-workspace.yaml` created
+- [x] Root `README.md` with setup instructions created
+- [x] Both projects compile successfully
 
 ---
 
@@ -40,12 +44,13 @@
 
 ### Core Infrastructure
 - [ ] Docker Compose for PostgreSQL
-- [ ] Root `.gitignore`
-- [ ] Root `package.json` (pnpm workspaces)
+- [x] Root `.gitignore`
+- [x] Root `package.json` (pnpm workspaces)
+- [x] `pnpm-workspace.yaml`
 - [ ] TypeScript configs (root, backend, frontend)
 
 ### Backend (NestJS)
-- [ ] Scaffold NestJS in `backend/`
+- [x] Scaffold NestJS in `backend/`
 - [ ] Prisma schema — MVP entities
 - [ ] Database migrations
 - [ ] Seed data
@@ -65,7 +70,7 @@
 - [ ] Swagger/OpenAPI docs
 
 ### Frontend (Next.js)
-- [ ] Scaffold Next.js in `frontend/`
+- [x] Scaffold Next.js in `frontend/`
 - [ ] Shadcn UI setup
 - [ ] Auth pages (Login, Register, Forgot Password)
 - [ ] Landing page
@@ -135,7 +140,10 @@
 
 ## Known Issues / Limitations
 
-- None yet — no implementation has started.
+- Next.js warns about duplicate lockfiles at root and in `frontend/` — minor, can be resolved by removing the nested `pnpm-lock.yaml`.
+- `sharp` and `unrs-resolver` build scripts are blocked by pnpm — approve them with `pnpm approve-builds` if image optimization is needed.
+- NestJS scaffolded without dependencies installed initially (used `--skip-install`); installed via pnpm workspaces.
+- No Docker Compose for PostgreSQL yet — cannot run the app end-to-end without a database.
 
 ---
 
@@ -153,25 +161,18 @@
 ## Next Steps (Recommended Order)
 
 1. Create `docker-compose.yml` for PostgreSQL
-2. Add root `package.json` with pnpm workspaces
-3. Add `.gitignore`
-4. Scaffold NestJS backend
-5. Scaffold Next.js frontend
-6. Write Prisma schema → migrate
-7. Implement backend auth module
-8. Implement frontend auth pages
-9. Continue per MVP priority list in `AGENTS.md`
+2. Write Prisma schema → migrate
+3. Implement backend auth module
+4. Implement frontend auth pages
+5. Continue per MVP priority list in `AGENTS.md`
 
 ---
 
 ## Build & Run Commands
 
-Commands will be documented here once scaffolding is complete.
-
-Estimated:
 ```bash
 pnpm install
 docker compose up -d
-pnpm dev:api    # backend
-pnpm dev:web    # frontend
+pnpm dev:backend   # starts NestJS at http://localhost:3000
+pnpm dev:frontend  # starts Next.js at http://localhost:3001
 ```
