@@ -1,10 +1,10 @@
 services:
   postgres:
-    image: postgres:18-alpine
+    image: postgres:16-alpine
     container_name: fittrack-postgres
     restart: unless-stopped
     ports:
-      - '5432:5432'
+      - '5433:5432'
     environment:
       POSTGRES_DB: fittrack_pro
       POSTGRES_USER: fittrack_dev
