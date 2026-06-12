@@ -9,5 +9,11 @@
     "build": "pnpm --filter backend build && pnpm --filter frontend build",
     "lint": "pnpm --filter backend lint && pnpm --filter frontend lint",
     "test": "pnpm --filter backend test"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/engines",
+      "prisma"
+    ]
   }
 }

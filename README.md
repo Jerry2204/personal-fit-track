@@ -17,11 +17,17 @@ Built as a portfolio project to demonstrate fullstack development skills with mo
 
 - Node.js 18+
 - pnpm 9+
-- Docker (for PostgreSQL)
+- Docker & Docker Compose (for PostgreSQL)
 
 ## Getting Started
 
 ```bash
+# Clone and enter the project
+git clone <repo-url> && cd fittrack-pro
+
+# Create environment file
+cp .env.example .env
+
 # Install dependencies
 pnpm install
 
@@ -35,6 +41,32 @@ pnpm dev:backend
 pnpm dev:frontend
 ```
 
+The backend API runs at `http://localhost:3000` and the frontend at `http://localhost:3001`.
+
+### Docker PostgreSQL
+
+The `docker-compose.yml` starts a PostgreSQL 18 Alpine container with:
+
+| Setting | Value |
+|---------|-------|
+| Database | `fittrack_pro` |
+| User | `fittrack_dev` |
+| Password | `fittrack_dev_password` |
+| Port | `5432` |
+| Volume | `postgres_data` (persistent) |
+
+To stop the database:
+
+```bash
+docker compose down
+```
+
+To reset all data:
+
+```bash
+docker compose down -v
+```
+
 ## Project Structure
 
 ```
@@ -46,6 +78,8 @@ pnpm dev:frontend
 │   └── src/         # Application source
 ├── docs/
 │   └── PROJECT_BRIEF.md
+├── docker-compose.yml
+├── .env.example
 ├── AGENTS.md
 ├── PROGRESS.md
 ├── pnpm-workspace.yaml
