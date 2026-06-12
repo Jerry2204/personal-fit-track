@@ -380,7 +380,7 @@ Backend:
 
 - NestJS 11.1.24
 - TypeScript 6.0.3
-- PostgreSQL 18.4
+- PostgreSQL 16
 - Prisma ORM 7.8.0
 - @prisma/client 7.8.0
 - JWT Authentication using @nestjs/jwt 11.0.2 and passport-jwt 4.0.1
