@@ -1,13 +1,13 @@
 # FitTrack Pro — Progress Tracker
 
-> **Last updated:** 2026-06-12 (Backend auth completed)
+> **Last updated:** 2026-06-12 (Frontend redesign: High-Contrast Depth UI & Dynamic Sidebar)
 
 ---
 
 ## Project Status
 
-- **Phase:** 2 — Backend Authentication
-- **Status:** AuthModule complete (register, login, JWT, me endpoint)
+- **Phase:** 3 — Dashboard UI/UX
+- **Status:** Dashboard redesign completed with "Plus Jakarta Sans" typography, deeper structural shadows, unified consistent cards, and a dynamic glassmorphic sidebar. Lifted sidebar layout state to automatically adapt main content width when collapsed.
 
 ---
 
@@ -18,10 +18,10 @@
 | Frontend | Next.js 16.2.9, React 19.2.4, TypeScript 5.9.3, Tailwind CSS 4.3.0 | Scaffolded ✅ |
 | Backend | NestJS 11.x, TypeScript 5.x, Prisma ORM | Scaffolded ✅ |
 | Database | PostgreSQL 16 via Docker (docker-compose) | Configured ✅ |
-| Charts | Recharts | Not installed |
-| Data Fetching | TanStack Query | Not installed |
-| Client State | Zustand | Not installed |
-| Forms | React Hook Form + Zod | Not installed |
+| Charts | Recharts 3.8.1 | Installed ✅ |
+| Data Fetching | TanStack Query 5.101.0 | Installed ✅ |
+| Client State | Zustand 5.0.14 | Installed ✅ |
+| Forms | React Hook Form 7.78 + Zod 4.4 | Installed ✅ |
 
 ---
 
@@ -40,6 +40,22 @@
 - [x] `docker-compose.yml` with PostgreSQL 18 Alpine
 - [x] `.env.example` with database, JWT, and API URL vars
 - [x] Docker PostgreSQL configured and ready to start
+- [x] Shadcn UI components (Button, Input, Label, Card)
+- [x] Landing page
+- [x] Auth pages (Login, Register)
+- [x] Dashboard layout with auth guard
+- [x] Dashboard placeholder page
+- [x] Zustand auth store with JWT persistence
+- [x] API client with auth header injection
+- [x] Dashboard premium redesign (sidebar nav, stat cards, weekly overview, activity lists, goals, body progress, personal records)
+- [x] Shadcn UI components (Avatar, Badge, Progress, Separator, Skeleton)
+- [x] Loading skeletons for dashboard
+- [x] Micro-interactions and animations
+- [x] Realistic mock fitness data (3 months of activity)
+- [x] Theme system with dark/light toggle (localStorage persistence)
+- [x] Flash-prevention script for SSR theme hydration
+- [x] Improved color contrast (WCAG AA compliance)
+- [x] Cards visually distinct from background in dark mode
 
 ---
 
@@ -76,10 +92,12 @@
 
 ### Frontend (Next.js)
 - [x] Scaffold Next.js in `frontend/`
-- [ ] Shadcn UI setup
-- [ ] Auth pages (Login, Register, Forgot Password)
-- [ ] Landing page
-- [ ] Dashboard layout & analytics
+- [x] Shadcn UI setup (Button, Input, Label, Card, Avatar, Badge, Progress, Separator, Skeleton)
+- [x] Auth pages (Login, Register)
+- [ ] Forgot password page
+- [x] Landing page
+- [x] Dashboard layout with sidebar navigation
+- [x] Dashboard analytics with mock data
 - [ ] Exercise library page
 - [ ] Gym workout list / add / detail pages
 - [ ] Running tracker / add activity pages
@@ -90,7 +108,7 @@
 - [ ] Yearly report page
 - [ ] Personal records page
 - [ ] Settings page
-- [ ] Dark/light mode toggle
+- [x] Dark/light mode toggle
 
 ### Database Entities (MVP)
 - [x] User
@@ -161,6 +179,10 @@
 - `prisma-client-js` generator in Prisma v7 internally uses the new "client" engine type; adapter is mandatory.
 - `dotenv/config` imported in `main.ts` to load `.env` before NestJS bootstraps.
 - JWT secret is hardcoded in `.env`; change in production.
+- Frontend uses client-side auth guard in layout — no Next.js proxy/middleware for route protection yet.
+- Auth token stored in localStorage via Zustand persist — vulnerable to XSS; adequate for MVP.
+- Zod v4 is used — verify `@hookform/resolvers` compatibility if issues arise.
+- Dark mode `--card` is `240 6% 7%` vs `--background` `240 10% 3.9%` — subtle but visible surface separation.
 
 ---
 
@@ -177,9 +199,10 @@
 
 ## Next Steps (Recommended Order)
 
-1. Implement frontend auth pages (login, register)
-2. Implement ProfileModule
-3. Continue per MVP priority list in `AGENTS.md`
+1. Implement remaining pages (Workouts, Running, etc.) linking from sidebar
+2. Implement ProfileModule (backend) + Settings page (frontend)
+3. Implement ExercisesModule + Exercise library page
+4. Continue per MVP priority list in `AGENTS.md`
 
 ---
 
