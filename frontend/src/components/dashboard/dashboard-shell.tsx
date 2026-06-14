@@ -2,6 +2,7 @@
 
 import { useSidebar } from "./sidebar-provider"
 import { cn } from "@/lib/utils"
+import { Topbar } from "./topbar"
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const { collapsed } = useSidebar()
@@ -13,6 +14,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         collapsed ? "md:ml-16" : "md:ml-64",
       )}
     >
+      <Topbar />
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
         {children}
       </div>

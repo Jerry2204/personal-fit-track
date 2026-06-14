@@ -1,6 +1,6 @@
 # FitTrack Pro — Progress Tracker
 
-> **Last updated:** 2026-06-12 (Frontend redesign: High-Contrast Depth UI & Dynamic Sidebar)
+> **Last updated:** 2026-06-14 (Dashboard layout: Topbar + EmptyState)
 
 ---
 
@@ -97,6 +97,8 @@
 - [ ] Forgot password page
 - [x] Landing page
 - [x] Dashboard layout with sidebar navigation
+- [x] Topbar with page title, theme toggle, and user avatar
+- [x] EmptyState component
 - [x] Dashboard analytics with mock data
 - [ ] Exercise library page
 - [ ] Gym workout list / add / detail pages
