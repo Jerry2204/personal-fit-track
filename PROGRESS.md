@@ -87,6 +87,71 @@
 - Frontend `next build` — compiles cleanly, route `/goals` resolved
 - Backend `tsc --noEmit` — no errors
 
+## Phase: Calendar View MVP
+
+### Completed (Date: 2026-06-14)
+
+**Backend — CalendarModule**
+- `QueryCalendarDto` — year + month validation
+- `CalendarService.getMonth()` — fetches all workouts, runs, body progress, and habit logs for a given month (parallelized); returns per-day breakdown with activity flags (hasWorkout, hasRun, hasBodyProgress, hasHabitLog) and totalActivity count
+- `CalendarController` — `GET /calendar?year=&month=` (JWT-guarded)
+- Registered in `AppModule`
+
+**Frontend — Calendar Page**
+- Month grid (7 columns, Sun-Sat headers) with leading/trailing empty cells for alignment
+- Day cells with colored dot indicators for each activity type (primary for workouts, orange for runs, emerald for progress, blue for habits, red for missed)
+- Today highlighted with `ring-1 ring-primary/40` + extra dot indicator
+- Selected day highlighted with `ring-2 ring-primary/50`
+- Previous/Next month navigation via chevron buttons
+- "Today" shortcut button (resets to current month)
+- Month/Week view toggle buttons (week view scaffolded)
+- Color-coded legend below header
+- Click day → opens `Sheet` (slide-in panel from right) showing all activities for that date, grouped by type with links to detail pages (workout, run, body-progress)
+- Sheet handles empty/rest day state with "Rest day — No activities recorded" message
+- Habit log entries in sheet show badges for workoutDone/runningDone/steps/mood
+- Summary stat cards below calendar (workouts, runs, progress logs, habit logs counts)
+- Active streak counter (consecutive days from end of month with activities)
+- Loading state with skeleton grid
+- Error state with `EmptyState` + retry button
+- Empty state when no activities exist for the month
+
+**New UI Component**
+- `frontend/src/components/ui/sheet.tsx` — shadcn-style Sheet component (`@radix-ui/react-dialog` based) with `side="right"` animation, header, title, description, close button; used for day detail panel
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, 15 routes total (new: `/calendar`)
+- Backend `tsc --noEmit` — no errors
+
+## Phase: Daily Habit Log MVP
+
+### Completed (Date: 2026-06-14)
+
+**Backend — HabitLogsModule**
+- `CreateHabitLogDto` — validation for waterIntakeMl, sleepHours, steps, caloriesIntake, proteinG, bodyWeightKg, mood (Mood enum), energyLevel (0-10), notes
+- `UpdateHabitLogDto` — same fields all optional for partial updates
+- `QueryHabitLogDto` — date range filter (`from`/`to`), pagination (page/limit)
+- `HabitLogsService` — create, findAll (paginated + date range), findOne, findToday (single entry for current date), update, delete with ownership checks
+- `HabitLogsController` — CRUD endpoints under `/habit-logs` (+ `GET /habit-logs/today`)
+- Registered in `AppModule`
+
+**Frontend — Habits Page**
+- `habits/page.tsx` — single full-featured page:
+  - Today's quick summary card (shows todayEntry values with colored icons)
+  - Toggleable add/edit form: date picker + 8 fields (water, sleep, steps, calories, protein, weight, mood dropdown, energy level 1-10) + notes textarea
+  - History list with date badge, compact field icons, mood/energy badges
+  - Edit button (inline icon), delete with AlertDialog confirmation
+  - Detail Sheet (slide-in panel) showing full entry breakdown
+  - Pagination for history
+  - Loading (skeleton), empty (EmptyState), error states
+
+**Sidebar & Topbar**
+- Added `ListChecks` icon + `/habits` link in sidebar nav
+- Added `/habits` → "Habits" title mapping in topbar
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, 16 routes total (new: `/habits`)
+- Backend `tsc --noEmit` — no errors
+
 ### Next Steps
 
 1. Implement **ProfileModule** (backend) + Settings page (frontend)

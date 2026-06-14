@@ -20,6 +20,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  ListChecks,
 } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -30,6 +31,7 @@ const navItems = [
   { href: "/exercises", label: "Exercises", icon: BookOpen },
   { href: "/body-progress", label: "Body Progress", icon: Activity },
   { href: "/goals", label: "Goals", icon: Target },
+  { href: "/habits", label: "Habits", icon: ListChecks },
   { href: "/calendar", label: "Calendar", icon: Calendar },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/settings", label: "Settings", icon: Settings },
