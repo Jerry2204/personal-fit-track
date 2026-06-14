@@ -26,6 +26,7 @@ import {
   Medal,
   TrendingUp,
   CalendarArrowUp,
+  LifeBuoy,
 } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -45,6 +46,7 @@ const navItems = [
   { href: "/calendar", label: "Calendar", icon: Calendar },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/help", label: "Help Center", icon: LifeBuoy },
 ]
 
 export function Sidebar() {

@@ -5,9 +5,10 @@ import { useAuthStore } from "@/lib/auth-store"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useSidebar } from "./sidebar-provider"
-import { Menu } from "lucide-react"
+import { Menu, LifeBuoy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NotificationBell } from "@/components/notification-bell"
+import Link from "next/link"
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Dashboard",
@@ -25,6 +26,8 @@ const pageTitles: Record<string, string> = {
   "/reports": "Reports",
   "/achievements": "Achievements",
   "/settings": "Settings",
+  "/help": "Help Center",
+  "/help/getting-started": "Getting Started",
 }
 
 function getPageTitle(pathname: string): string {
@@ -59,6 +62,13 @@ export function Topbar() {
 
       <div className="flex items-center gap-1 sm:gap-3">
         <NotificationBell />
+        <Link
+          href="/help"
+          className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          title="Help Center"
+        >
+          <LifeBuoy className="h-4 w-4" />
+        </Link>
         <ThemeToggle />
         <Avatar className="size-8 cursor-pointer border-2 border-primary/10 transition-all hover:border-primary/30">
           <AvatarImage src={user?.avatarUrl || undefined} alt={user?.name || "Avatar"} />
