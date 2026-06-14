@@ -479,4 +479,62 @@ All charts: responsive (ResponsiveContainer), styled tooltips, empty states, the
 **Build Verification**
 - Frontend `next build` — 22 routes, all clean
 
+## Phase: Progressive Overload Tracker
+
+### Completed (Date: 2026-06-14)
+
+**Backend — ProgressiveOverloadModule**
+- `progressive-overload.module.ts`, `progressive-overload.controller.ts`, `progressive-overload.service.ts`
+- `GET /progressive-overload` (JWT guarded) — per-exercise strength progression:
+  - Fetches all user workouts with nested exercises + sets, grouped by exercise
+  - For each exercise computes:
+    - **Best set**: highest estimated 1RM (Epley formula: `weight × (1 + reps/30)`) across all sets
+    - **Previous best set**: second-best for comparison/delta display
+    - **Estimated 1RM**: displayed alongside best set
+    - **Volume progression**: `∑(weight × reps)` per workout, date-sorted array
+    - **Monthly strength**: per-month best e1RM for trend tracking
+    - **Last used**: most recent date, weight, reps
+  - Results sorted by best e1RM descending
+  - `ExerciseProgression` interface exported for type safety
+- Registered in `AppModule` (now 21 modules)
+
+**Frontend — Progressive Overload Page (`/progressive-overload`)**
+- Page layout with summary stat cards (exercises tracked, with PR data, with improvement, total sessions)
+- Responsive card grid (1→2→3 cols) — one card per exercise
+- Each card shows:
+  - Exercise name + muscle group badge
+  - Best set display (`80kg × 12`) with date
+  - Estimated 1RM badge with teal Zap icon
+  - Delta badge vs previous best (green `+X.X kg` or red `-X.X kg`)
+  - Previous best comparison box (weight × reps + e1RM + date)
+  - Last used info line
+  - Volume progression mini bar chart (last 12 entries, Recharts)
+  - Monthly strength mini line chart (last 6 months, e1RM trend, Recharts)
+- Loading skeleton, error state (EmptyState), empty state
+- Page title: "Progressive Overload" with descriptive subtitle
+
+**Nav Updates**
+- Sidebar: added `/progressive-overload` (TrendingUp icon) between Records and Habits
+- Topbar: added `/progressive-overload` → "Progressive Overload" title mapping
+
+## Phase: Running Bests (1K, 5K, 10K, HM, FM)
+
+**Backend — PersonalRecordsService**
+- `getBestRaceEstimate()` — generic helper that finds fastest estimated/actual time for any target distance using ±10% tolerance window and pace-based extrapolation from longer runs
+- `formatRaceRecord()` — formats time display (hh:mm:ss or mm:ss), computes pace string, tracks estimated vs actual
+- `findAll()` — now returns 5 new racing record types: `best1K`, `best5K`, `best10K`, `bestHM`, `bestFM` alongside existing 5 records
+- 1K uses wider tolerance (±30%) since shorter runs may vary more
+
+**Frontend — Records Page**
+- Added `BestRaceRecord` interface with `targetDistanceKm`, `actualDistanceKm`, `formattedPace`, `runType`, `isEstimated`
+- Extended `RecordsData` with 5 new nullable race record fields
+- `categoryConfig` — 5 new entries with distinct gradient colors (rose/orange/cyan/indigo/violet) and `Timer` icon
+- `getRecordCategory` — maps `best_1k`/`best_5k`/`best_10k`/`best_hm`/`best_fm` to "running" tab
+- `tabRecords` — pushes all 5 race records into the records list
+- `RecordCard` subtitle — shows actual distance if different from target, pace string, and "estimated" label when computed
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, all 23 routes resolved
+- Backend `nest build` — clean
+
 ### Next Steps

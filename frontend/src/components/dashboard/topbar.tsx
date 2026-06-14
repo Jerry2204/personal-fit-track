@@ -18,6 +18,7 @@ const pageTitles: Record<string, string> = {
   "/body-progress": "Body Progress",
   "/goals": "Goals",
   "/records": "Records",
+  "/progressive-overload": "Progressive Overload",
   "/habits": "Habits",
   "/calendar": "Calendar",
   "/reports": "Reports",

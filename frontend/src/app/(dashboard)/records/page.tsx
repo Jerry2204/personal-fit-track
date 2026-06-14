@@ -11,6 +11,7 @@ import {
   Timer,
   Gauge,
   Weight,
+  Route,
 } from "lucide-react"
 import { api } from "@/lib/api"
 import { EmptyState } from "@/components/ui/empty-state"
@@ -30,6 +31,16 @@ interface StrongestLift extends BaseRecord {
   type: "strongest_lift"
   exerciseName: string
   muscleGroup: string
+}
+
+interface BestRaceRecord extends BaseRecord {
+  type: "best_1k" | "best_5k" | "best_10k" | "best_hm" | "best_fm"
+  label: string
+  targetDistanceKm: number
+  actualDistanceKm: number
+  formattedPace: string
+  runType: string
+  isEstimated: boolean
 }
 
 interface LongestRun extends BaseRecord {
@@ -55,7 +66,7 @@ interface HighestWeeklyMileage extends BaseRecord {
   runCount: number
 }
 
-type PersonalRecord = StrongestLift | LongestRun | FastestRun | HighestVolume | HighestWeeklyMileage
+type PersonalRecord = StrongestLift | LongestRun | FastestRun | HighestVolume | HighestWeeklyMileage | BestRaceRecord
 
 interface RecordsData {
   strongestLift: StrongestLift | null
@@ -63,6 +74,11 @@ interface RecordsData {
   fastestRun: FastestRun | null
   highestVolume: HighestVolume | null
   highestWeeklyMileage: HighestWeeklyMileage | null
+  best1K: BestRaceRecord | null
+  best5K: BestRaceRecord | null
+  best10K: BestRaceRecord | null
+  bestHM: BestRaceRecord | null
+  bestFM: BestRaceRecord | null
 }
 
 const tabs = [
@@ -106,11 +122,41 @@ const categoryConfig: Record<string, { label: string; icon: React.ElementType; g
     gradient: "from-amber-600/20 via-amber-500/10 to-transparent",
     accent: "text-amber-400",
   },
+  best_1k: {
+    label: "Best 1K",
+    icon: Timer,
+    gradient: "from-rose-600/20 via-rose-500/10 to-transparent",
+    accent: "text-rose-400",
+  },
+  best_5k: {
+    label: "Best 5K",
+    icon: Timer,
+    gradient: "from-orange-600/20 via-orange-500/10 to-transparent",
+    accent: "text-orange-400",
+  },
+  best_10k: {
+    label: "Best 10K",
+    icon: Timer,
+    gradient: "from-cyan-600/20 via-cyan-500/10 to-transparent",
+    accent: "text-cyan-400",
+  },
+  best_hm: {
+    label: "Half Marathon",
+    icon: Timer,
+    gradient: "from-indigo-600/20 via-indigo-500/10 to-transparent",
+    accent: "text-indigo-400",
+  },
+  best_fm: {
+    label: "Full Marathon",
+    icon: Timer,
+    gradient: "from-violet-600/20 via-violet-500/10 to-transparent",
+    accent: "text-violet-400",
+  },
 }
 
 function getRecordCategory(record: PersonalRecord): string {
   if (record.type === "strongest_lift") return "lifting"
-  if (record.type === "longest_run" || record.type === "fastest_run") return "running"
+  if (record.type === "longest_run" || record.type === "fastest_run" || record.type === "best_1k" || record.type === "best_5k" || record.type === "best_10k" || record.type === "best_hm" || record.type === "best_fm") return "running"
   if (record.type === "highest_volume") return "volume"
   if (record.type === "highest_weekly_mileage") return "mileage"
   return ""
@@ -143,6 +189,14 @@ function RecordCard({ record, index }: { record: PersonalRecord; index: number }
     subtitle = record.workoutType
   } else if (record.type === "highest_weekly_mileage") {
     subtitle = `${record.runCount} run${record.runCount === 1 ? "" : "s"}`
+  } else if (record.type === "best_1k" || record.type === "best_5k" || record.type === "best_10k" || record.type === "best_hm" || record.type === "best_fm") {
+    const parts: string[] = []
+    if (record.actualDistanceKm !== record.targetDistanceKm) {
+      parts.push(`${record.actualDistanceKm.toFixed(1)} km`)
+    }
+    parts.push(record.formattedPace)
+    if (record.isEstimated) parts.push("estimated")
+    subtitle = parts.join(" · ")
   }
 
   return (
@@ -219,6 +273,11 @@ function tabRecords(data: RecordsData, tab: TabId): PersonalRecord[] {
   if (data.strongestLift) all.push(data.strongestLift)
   if (data.longestRun) all.push(data.longestRun)
   if (data.fastestRun) all.push(data.fastestRun)
+  if (data.best1K) all.push(data.best1K)
+  if (data.best5K) all.push(data.best5K)
+  if (data.best10K) all.push(data.best10K)
+  if (data.bestHM) all.push(data.bestHM)
+  if (data.bestFM) all.push(data.bestFM)
   if (data.highestVolume) all.push(data.highestVolume)
   if (data.highestWeeklyMileage) all.push(data.highestWeeklyMileage)
 

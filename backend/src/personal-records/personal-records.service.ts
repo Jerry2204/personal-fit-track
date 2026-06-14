@@ -6,14 +6,29 @@ export class PersonalRecordsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(userId: string) {
-    const [strongestLift, longestRun, fastestRun, highestVolume, highestWeeklyMileage] =
-      await Promise.all([
-        this.getStrongestLift(userId),
-        this.getLongestRun(userId),
-        this.getFastestRun(userId),
-        this.getHighestWorkoutVolume(userId),
-        this.getHighestWeeklyMileage(userId),
-      ]);
+    const [
+      strongestLift,
+      longestRun,
+      fastestRun,
+      highestVolume,
+      highestWeeklyMileage,
+      best1K,
+      best5K,
+      best10K,
+      bestHM,
+      bestFM,
+    ] = await Promise.all([
+      this.getStrongestLift(userId),
+      this.getLongestRun(userId),
+      this.getFastestRun(userId),
+      this.getHighestWorkoutVolume(userId),
+      this.getHighestWeeklyMileage(userId),
+      this.getBestRaceEstimate(userId, 1, '1 km', 'best_1k', 0.3),
+      this.getBestRaceEstimate(userId, 5, '5 km', 'best_5k'),
+      this.getBestRaceEstimate(userId, 10, '10 km', 'best_10k'),
+      this.getBestRaceEstimate(userId, 21.1, 'Half Marathon', 'best_hm'),
+      this.getBestRaceEstimate(userId, 42.2, 'Full Marathon', 'best_fm'),
+    ]);
 
     return {
       strongestLift,
@@ -21,6 +36,11 @@ export class PersonalRecordsService {
       fastestRun,
       highestVolume,
       highestWeeklyMileage,
+      best1K,
+      best5K,
+      best10K,
+      bestHM,
+      bestFM,
     };
   }
 
@@ -171,6 +191,125 @@ export class PersonalRecordsService {
       workoutType: bestWorkout.type,
       unit: 'kg',
     };
+  }
+
+  private async getBestRaceEstimate(
+    userId: string,
+    targetDistanceKm: number,
+    label: string,
+    typeKey: string,
+    tolerance: number = 0.1,
+  ) {
+    const runs = await this.prisma.runActivity.findMany({
+      where: { userId },
+      select: { distanceKm: true, durationMinutes: true, averagePace: true, date: true, type: true },
+      orderBy: { date: 'asc' },
+    });
+
+    if (runs.length === 0) return null;
+
+    let bestTimeMinutes: number | null = null;
+    let bestRun: (typeof runs)[0] | null = null;
+    let isEstimated = false;
+
+    // 1. Check runs within tolerance of target distance (actual or close-to-actual)
+    const minDist = targetDistanceKm * (1 - tolerance);
+    const maxDist = targetDistanceKm * (1 + tolerance);
+    const closeRuns = runs.filter((r) => r.distanceKm >= minDist && r.distanceKm <= maxDist);
+
+    for (const run of closeRuns) {
+      const estimatedTime = (run.durationMinutes / run.distanceKm) * targetDistanceKm;
+      if (bestTimeMinutes === null || estimatedTime < bestTimeMinutes) {
+        bestTimeMinutes = estimatedTime;
+        bestRun = run;
+        isEstimated = Math.abs(run.distanceKm - targetDistanceKm) > 0.01;
+      }
+    }
+
+    // 2. Check runs that exceed the target distance — extrapolate from those
+    const longerRuns = runs.filter((r) => r.distanceKm > targetDistanceKm * 1.1);
+    for (const run of longerRuns) {
+      const estimatedTime = (run.durationMinutes / run.distanceKm) * targetDistanceKm;
+      if (bestTimeMinutes === null || estimatedTime < bestTimeMinutes) {
+        bestTimeMinutes = estimatedTime;
+        bestRun = run;
+        isEstimated = true;
+      }
+    }
+
+    if (bestTimeMinutes === null || !bestRun) return null;
+
+    return this.formatRaceRecord(bestTimeMinutes, bestRun, targetDistanceKm, label, typeKey, isEstimated);
+  }
+
+  private formatRaceRecord(
+    bestTimeMinutes: number,
+    run: { distanceKm: number; durationMinutes: number; date: Date; type: string },
+    targetDistanceKm: number,
+    label: string,
+    typeKey: string,
+    isEstimated: boolean,
+  ) {
+    const totalSeconds = Math.round(bestTimeMinutes * 60);
+    const hrs = Math.floor(totalSeconds / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+
+    let displayValue: string;
+    if (hrs > 0) {
+      displayValue = `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    } else {
+      displayValue = `${mins}:${String(secs).padStart(2, '0')}`;
+    }
+
+    const actualDistKm = run.distanceKm;
+    const runPace = run.durationMinutes / run.distanceKm;
+    const paceMin = Math.floor(runPace);
+    const paceSec = Math.round((runPace - paceMin) * 60);
+    const paceStr = `${paceMin}:${String(paceSec).padStart(2, '0')} /km`;
+
+    return {
+      type: typeKey,
+      value: `${displayValue}${isEstimated ? '*' : ''}`,
+      metric: bestTimeMinutes,
+      displayValue,
+      label,
+      targetDistanceKm,
+      actualDistanceKm: Math.round(actualDistKm * 100) / 100,
+      formattedPace: paceStr,
+      date: run.date,
+      runType: run.type,
+      isEstimated,
+      unit: 'time',
+    };
+  }
+
+  private async getBestRunForDistance(
+    userId: string,
+    distanceKm: number,
+    label: string,
+    typeKey: string,
+  ) {
+    // returns the best average pace formatted as time for the given distance
+    // uses runs that are at least half the target distance to estimate
+    const runs = await this.prisma.runActivity.findMany({
+      where: {
+        userId,
+        averagePace: { not: null },
+        distanceKm: { gte: Math.max(1, distanceKm * 0.5) },
+      },
+      select: { distanceKm: true, durationMinutes: true, averagePace: true, date: true, type: true },
+      orderBy: { averagePace: 'asc' },
+      take: 1,
+    });
+
+    if (runs.length === 0) return null;
+
+    const bestRun = runs[0];
+    if (bestRun.averagePace === null) return null;
+    const estimatedTimeMinutes = bestRun.averagePace * distanceKm;
+
+    return this.formatRaceRecord(estimatedTimeMinutes, bestRun, distanceKm, label, typeKey, true);
   }
 
   private async getHighestWeeklyMileage(userId: string) {

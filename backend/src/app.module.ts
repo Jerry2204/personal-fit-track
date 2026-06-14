@@ -19,9 +19,10 @@ import { ProfileModule } from './profile/profile.module';
 import { AchievementsModule } from './achievements/achievements.module';
 import { ExportModule } from './export/export.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { ProgressiveOverloadModule } from './progressive-overload/progressive-overload.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule, PersonalRecordsModule, ShoesModule, DashboardModule, ReportsModule, ProfileModule, AchievementsModule, ExportModule, NotificationsModule],
+  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule, PersonalRecordsModule, ShoesModule, DashboardModule, ReportsModule, ProfileModule, AchievementsModule, ExportModule, NotificationsModule, ProgressiveOverloadModule],
   controllers: [AppController],
   providers: [AppService],
 })

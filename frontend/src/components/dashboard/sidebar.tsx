@@ -24,6 +24,7 @@ import {
   ListChecks,
   SportShoe,
   Medal,
+  TrendingUp,
 } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -36,6 +37,7 @@ const navItems = [
   { href: "/body-progress", label: "Body Progress", icon: Activity },
   { href: "/goals", label: "Goals", icon: Target },
   { href: "/records", label: "Records", icon: Trophy },
+  { href: "/progressive-overload", label: "Progressive", icon: TrendingUp },
   { href: "/habits", label: "Habits", icon: ListChecks },
   { href: "/achievements", label: "Achievements", icon: Medal },
   { href: "/calendar", label: "Calendar", icon: Calendar },
