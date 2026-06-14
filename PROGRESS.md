@@ -152,10 +152,39 @@
 - Frontend `next build` — compiles cleanly, 16 routes total (new: `/habits`)
 - Backend `tsc --noEmit` — no errors
 
+## Phase: Activity Heatmap
+
+### Completed (Date: 2026-06-14)
+
+**Backend — Calendar Module Enhancement**
+- `QueryHeatmapDto` — validates `year` (integer, min 2000)
+- `CalendarService.getHeatmap()` — fetches all workouts, runs, body-progress, and habit-logs for a full year; aggregates per-day counts (workoutCount, runCount, bodyProgressCount, habitCount, total count); builds GitHub-style week arrays (53 weeks × 7 days, Sun-Sat) with padding from adjacent years; computes month label positions
+- `CalendarController.getHeatmap()` — `GET /calendar/heatmap?year=2026`
+
+**Frontend — ActivityHeatmap Component**
+- `components/calendar/activity-heatmap.tsx` — standalone client component:
+  - GitHub-style contribution graph: 7 rows (Mon-Sun) × ~53 columns (weeks)
+  - 5-level color scale (none → low → medium → high → very high) using green/teal tones with dark mode support
+  - Year navigation (prev/next chevrons, disabled at current year)
+  - Activity type filter toggles (Workout, Run, Progress, Habit) — click to toggle; dimmed when inactive
+  - Live filtered counts update when toggling filters
+  - Hover tooltip: fixed-position popup showing date + per-type breakdown
+  - Month labels aligned above each week's first occurrence
+  - Day labels on left (Mon, Wed, Fri)
+  - "Less → More" legend at bottom
+  - Loading skeleton grid, empty state, error state
+  - Responsive: horizontal scroll on narrow screens
+
+**Integration**
+- `ActivityHeatmap` added to calendar page below streak card, before day detail sheet
+
+**Build Verification**
+- Frontend `next build` — 16 routes, all clean
+- Backend `tsc --noEmit` — clean
+
 ### Next Steps
 
 1. Implement **ProfileModule** (backend) + Settings page (frontend)
 2. Wire dashboard stats to real API data instead of mock data
-3. Implement **HabitLogsModule** + habit log page
-4. Implement **ShoesModule** + shoe mileage tracker
-5. Implement **DashboardModule** backend for aggregated stats
+3. Implement **ShoesModule** + shoe mileage tracker
+4. Implement **DashboardModule** backend for aggregated stats

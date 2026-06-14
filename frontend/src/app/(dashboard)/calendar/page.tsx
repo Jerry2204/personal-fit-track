@@ -30,6 +30,7 @@ import {
   SheetDescription,
   SheetClose,
 } from "@/components/ui/sheet"
+import { ActivityHeatmap } from "@/components/calendar/activity-heatmap"
 
 interface WorkoutSummary {
   id: string
@@ -796,6 +797,9 @@ export default function CalendarPage() {
           </div>
         </div>
       )}
+
+      {/* Activity Heatmap */}
+      <ActivityHeatmap />
 
       {/* Day Detail Sheet */}
       {selectedDate && (
