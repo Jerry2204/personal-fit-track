@@ -131,7 +131,7 @@ export default function WorkoutsPage() {
             <Link
               key={workout.id}
               href={`/workouts/${workout.id}`}
-              className="group block rounded-2xl border border-border/40 bg-card p-5 shadow-lg transition-all hover:shadow-xl hover:-translate-y-1"
+              className="group block rounded-2xl border border-border/40 bg-card p-5 shadow-lg text-card-foreground transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <div className="flex items-center justify-between">
                 <div>

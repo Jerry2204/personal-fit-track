@@ -220,7 +220,7 @@ export default function ExercisesPage() {
           {data.data.map((exercise) => (
             <div
               key={exercise.id}
-              className="group relative rounded-2xl border border-border/40 bg-card p-5 shadow-lg transition-all hover:shadow-xl hover:-translate-y-1"
+              className="group relative rounded-2xl border border-border/40 bg-card p-5 shadow-lg text-card-foreground transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <div className="mb-3 flex items-start justify-between">
                 <h3 className="text-base font-semibold text-foreground">

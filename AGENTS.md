@@ -329,6 +329,36 @@ The first implementation task should be:
 
 After scaffolding, the next task should be Prisma schema design.
 
+---
+
+## UI Interaction Conventions
+
+Always use these patterns for user interactions:
+
+### Confirmation dialogs
+- Use shadcn `AlertDialog` for all destructive actions (delete, cancel with unsaved changes).
+- Never use browser's native `confirm()`.
+- Always include Cancel and the action button (Delete/Save/etc.).
+- Action buttons for destructive actions use destructive variant styling.
+
+### Toast notifications
+- Use Sonner `toast` for all operation feedback.
+- `toast.success("message")` on success.
+- `toast.error("message")` on error.
+- Add `onSuccess` and `onError` handlers to every `useMutation`.
+- Toaster is rendered globally in `Providers`.
+
+### Button variants
+- Submit/Save buttons: no explicit variant (defaults to `bg-primary` deep teal).
+- Cancel buttons: `variant="destructive"`.
+- Delete buttons: `variant="destructive"`.
+
+### Text colors in card-style sections
+- Every `<div>` or `<Link>` styled with `bg-card` must also include `text-card-foreground`.
+- Primary text inside cards (labels, headings, data values) should use `text-card-foreground` or inherit from the card wrapper.
+- Secondary text uses `text-muted-foreground`.
+- This matches the official `<Card>` component contract.
+
 ## Progress Tracking Rules
 
 Always update `PROGRESS.md` after completing a task.

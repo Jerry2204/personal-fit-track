@@ -182,7 +182,7 @@ export default function NewWorkoutPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg">
+        <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg text-card-foreground">
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="space-y-2">
               <label className="text-sm font-medium">Date</label>
@@ -214,7 +214,7 @@ export default function NewWorkoutPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg">
+        <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg text-card-foreground">
           <h3 className="mb-4 text-sm font-semibold">Exercises</h3>
 
           <div className="relative mb-4">
@@ -255,7 +255,7 @@ export default function NewWorkoutPage() {
                       <span className="flex size-6 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
                         {i + 1}
                       </span>
-                      <span className="text-sm font-semibold">{ex.exerciseName}</span>
+                      <span className="text-sm font-semibold text-card-foreground">{ex.exerciseName}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       {ex.sets.length > 0 && (

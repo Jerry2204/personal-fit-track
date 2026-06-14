@@ -165,12 +165,12 @@ export default function WorkoutDetailPage() {
       </div>
 
       {workout.notes && (
-        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg">
+        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
           <p className="text-sm text-muted-foreground">{workout.notes}</p>
         </div>
       )}
 
-      <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg">
+      <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg text-card-foreground">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold">Exercises</h3>
           <div className="text-right">
@@ -191,7 +191,7 @@ export default function WorkoutDetailPage() {
                     <span className="flex size-6 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
                       {i + 1}
                     </span>
-                    <span className="text-sm font-semibold">{we.exercise.name}</span>
+                    <span className="text-sm font-semibold text-card-foreground">{we.exercise.name}</span>
                     <Badge variant="outline" className="text-[10px]">
                       {we.exercise.muscleGroup}
                     </Badge>
@@ -222,8 +222,8 @@ export default function WorkoutDetailPage() {
                         {we.sets.map((set) => (
                           <tr key={set.id} className="border-t border-border/20">
                             <td className="py-1.5 text-muted-foreground">{set.setNumber}</td>
-                            <td className="py-1.5 font-medium">{set.weightKg ?? "-"}</td>
-                            <td className="py-1.5">{set.reps ?? "-"}</td>
+                            <td className="py-1.5 font-medium text-card-foreground">{set.weightKg ?? "-"}</td>
+                            <td className="py-1.5 text-card-foreground">{set.reps ?? "-"}</td>
                             <td className="py-1.5 text-muted-foreground">{set.rpe ?? "-"}</td>
                           </tr>
                         ))}
