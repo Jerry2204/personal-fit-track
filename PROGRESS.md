@@ -461,4 +461,22 @@ All charts: responsive (ResponsiveContainer), styled tooltips, empty states, the
 - Frontend `next build` — 22 routes, all clean
 - Backend `tsc --noEmit` — clean
 
+## Phase: Date Picker Polish
+
+### Completed (Date: 2026-06-14)
+
+- Installed `react-day-picker` v10 and `date-fns` v4
+- Installed `@radix-ui/react-popover` — created shadcn-style `Popover` component (`popover.tsx`)
+- Created `DatePicker` component (`date-picker.tsx`) — calendar popover with DayPicker, formatting via `date-fns`
+- Replaced all 6 `<Input type="date">` across the app:
+  - `body-progress/page.tsx` — measurement date
+  - `habits/page.tsx` — habit log date
+  - `workouts/new/page.tsx` — workout date
+  - `goals/page.tsx` — goal deadline
+  - `shoes/page.tsx` — purchase date
+  - `running/new/page.tsx` — run date
+
+**Build Verification**
+- Frontend `next build` — 22 routes, all clean
+
 ### Next Steps

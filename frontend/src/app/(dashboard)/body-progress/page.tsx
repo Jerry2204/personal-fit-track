@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { api } from "@/lib/api"
 import { downloadCsv } from "@/lib/export-utils"
 import { Button } from "@/components/ui/button"
+import { DatePicker } from "@/components/ui/date-picker"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { EmptyState } from "@/components/ui/empty-state"
@@ -136,7 +137,7 @@ export default function BodyProgressPage() {
     <div className="animate-in space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-bold tracking-tight">Body Progress</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Body Progress</h2>
           <p className="text-sm text-muted-foreground">Track your measurements over time</p>
         </div>
         <div className="flex items-center gap-2">
@@ -156,7 +157,7 @@ export default function BodyProgressPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Date</label>
-              <Input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
+              <DatePicker value={form.date} onChange={(v) => setForm({ ...form, date: v })} />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Weight (kg)</label>
@@ -211,37 +212,37 @@ export default function BodyProgressPage() {
       {latest && hasLatest && !isLoading && (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {latest.weightKg != null && (
-            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
               <p className="text-xl font-bold">{latest.weightKg.toFixed(1)}</p>
               <p className="text-xs text-muted-foreground">weight (kg)</p>
             </div>
           )}
           {latest.bodyFatPercent != null && (
-            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
               <p className="text-xl font-bold">{latest.bodyFatPercent.toFixed(1)}%</p>
               <p className="text-xs text-muted-foreground">body fat</p>
             </div>
           )}
           {latest.waistCm != null && (
-            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
               <p className="text-xl font-bold">{latest.waistCm.toFixed(1)}</p>
               <p className="text-xs text-muted-foreground">waist (cm)</p>
             </div>
           )}
           {latest.chestCm != null && (
-            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
               <p className="text-xl font-bold">{latest.chestCm.toFixed(1)}</p>
               <p className="text-xs text-muted-foreground">chest (cm)</p>
             </div>
           )}
           {latest.armCm != null && (
-            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
               <p className="text-xl font-bold">{latest.armCm.toFixed(1)}</p>
               <p className="text-xs text-muted-foreground">arm (cm)</p>
             </div>
           )}
           {latest.thighCm != null && (
-            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+            <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
               <p className="text-xl font-bold">{latest.thighCm.toFixed(1)}</p>
               <p className="text-xs text-muted-foreground">thigh (cm)</p>
             </div>
@@ -259,35 +260,37 @@ export default function BodyProgressPage() {
       )}
 
       {!isLoading && !isError && entries.length > 0 && (
-        <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg text-card-foreground">
-          <h3 className="mb-4 text-sm font-semibold">History ({entries.length} entries)</h3>
+        <div className="rounded-2xl border border-border/40 bg-card shadow-lg text-card-foreground">
+          <div className="border-b border-border/40 px-5 py-4">
+            <h3 className="text-sm font-semibold">History ({entries.length} entries)</h3>
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs text-muted-foreground">
-                  <th className="pb-2 font-medium whitespace-nowrap">Date</th>
-                  <th className="pb-2 font-medium whitespace-nowrap">Weight</th>
-                  <th className="pb-2 font-medium whitespace-nowrap">Body Fat</th>
-                  <th className="pb-2 font-medium whitespace-nowrap">Waist</th>
-                  <th className="pb-2 font-medium whitespace-nowrap">Chest</th>
-                  <th className="pb-2 font-medium whitespace-nowrap">Arm</th>
-                  <th className="pb-2 font-medium whitespace-nowrap">Thigh</th>
-                  <th className="pb-2 font-medium whitespace-nowrap">Notes</th>
-                  <th className="w-8 pb-2" />
+                <tr className="text-left text-xs text-muted-foreground border-b border-border/20">
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Date</th>
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Weight</th>
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Body Fat</th>
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Waist</th>
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Chest</th>
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Arm</th>
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Thigh</th>
+                  <th className="px-5 py-3 font-medium whitespace-nowrap">Notes</th>
+                  <th className="w-8 px-5 py-3" />
                 </tr>
               </thead>
               <tbody>
                 {entries.map((entry) => (
-                  <tr key={entry.id} className="border-t border-border/20">
-                    <td className="py-2 text-card-foreground whitespace-nowrap">{formatDate(entry.date)}</td>
-                    <td className="py-2 text-card-foreground">{entry.weightKg?.toFixed(1) ?? "-"}</td>
-                    <td className="py-2 text-card-foreground">{entry.bodyFatPercent != null ? `${entry.bodyFatPercent.toFixed(1)}%` : "-"}</td>
-                    <td className="py-2 text-card-foreground">{entry.waistCm?.toFixed(1) ?? "-"}</td>
-                    <td className="py-2 text-card-foreground">{entry.chestCm?.toFixed(1) ?? "-"}</td>
-                    <td className="py-2 text-card-foreground">{entry.armCm?.toFixed(1) ?? "-"}</td>
-                    <td className="py-2 text-card-foreground">{entry.thighCm?.toFixed(1) ?? "-"}</td>
-                    <td className="py-2 text-muted-foreground max-w-[120px] truncate">{entry.notes ?? "-"}</td>
-                    <td className="py-2">
+                  <tr key={entry.id} className="border-b border-border/10 transition-colors hover:bg-muted/20 last:border-b-0">
+                    <td className="px-5 py-3 text-card-foreground whitespace-nowrap">{formatDate(entry.date)}</td>
+                    <td className="px-5 py-3 text-card-foreground">{entry.weightKg?.toFixed(1) ?? "-"}</td>
+                    <td className="px-5 py-3 text-card-foreground">{entry.bodyFatPercent != null ? `${entry.bodyFatPercent.toFixed(1)}%` : "-"}</td>
+                    <td className="px-5 py-3 text-card-foreground">{entry.waistCm?.toFixed(1) ?? "-"}</td>
+                    <td className="px-5 py-3 text-card-foreground">{entry.chestCm?.toFixed(1) ?? "-"}</td>
+                    <td className="px-5 py-3 text-card-foreground">{entry.armCm?.toFixed(1) ?? "-"}</td>
+                    <td className="px-5 py-3 text-card-foreground">{entry.thighCm?.toFixed(1) ?? "-"}</td>
+                    <td className="px-5 py-3 text-muted-foreground max-w-[120px] truncate">{entry.notes ?? "-"}</td>
+                    <td className="px-5 py-3">
                       <button
                         onClick={() => setDeleteId(entry.id)}
                         className="flex size-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-destructive/10 hover:text-destructive"

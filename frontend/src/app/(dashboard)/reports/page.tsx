@@ -388,23 +388,23 @@ export default function ReportsPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between print:hidden">
         <div>
-          <h2 className="text-lg font-bold tracking-tight">Reports</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Reports</h2>
           <p className="text-sm text-muted-foreground">Monthly and yearly fitness summaries</p>
         </div>
         <div className="flex items-center gap-2">
           {/* Tabs */}
-          <div className="flex items-center rounded-lg border border-border/40 bg-card p-0.5">
+          <div className="flex items-center rounded-xl border border-border/40 bg-card p-1 shadow-sm">
             <button
               type="button"
               onClick={() => setTab("monthly")}
-              className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tab === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-card-foreground"}`}
+              className={`rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-200 ${tab === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-card-foreground"}`}
             >
               Monthly
             </button>
             <button
               type="button"
               onClick={() => setTab("yearly")}
-              className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tab === "yearly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-card-foreground"}`}
+              className={`rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-200 ${tab === "yearly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-card-foreground"}`}
             >
               Yearly
             </button>

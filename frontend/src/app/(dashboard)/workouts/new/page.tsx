@@ -7,6 +7,7 @@ import { Plus, Trash2, ChevronDown, ChevronUp, Dumbbell } from "lucide-react"
 import { toast } from "sonner"
 import { api } from "@/lib/api"
 import { Button } from "@/components/ui/button"
+import { DatePicker } from "@/components/ui/date-picker"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -177,7 +178,7 @@ export default function NewWorkoutPage() {
   return (
     <div className="animate-in space-y-6">
       <div>
-        <h2 className="text-lg font-bold tracking-tight">New Workout</h2>
+        <h2 className="text-2xl font-bold tracking-tight">New Workout</h2>
         <p className="text-sm text-muted-foreground">Log today&apos;s gym session</p>
       </div>
 
@@ -186,7 +187,7 @@ export default function NewWorkoutPage() {
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="space-y-2">
               <label className="text-sm font-medium">Date</label>
-              <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+              <DatePicker value={date} onChange={setDate} />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Type</label>

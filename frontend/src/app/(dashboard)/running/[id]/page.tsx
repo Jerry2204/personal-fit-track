@@ -149,15 +149,15 @@ export default function RunDetailPage() {
       </div>
 
       <div className="grid grid-cols-3 gap-4">
-        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
           <p className="text-xl font-bold">{run.distanceKm.toFixed(2)}</p>
           <p className="text-xs text-muted-foreground">distance (km)</p>
         </div>
-        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
           <p className="text-xl font-bold">{formatDuration(run.durationMinutes)}</p>
           <p className="text-xs text-muted-foreground">duration</p>
         </div>
-        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+        <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
           <p className="text-xl font-bold">{formatPace(run.averagePace)}</p>
           <p className="text-xs text-muted-foreground">avg pace</p>
         </div>

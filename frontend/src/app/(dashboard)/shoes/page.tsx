@@ -7,6 +7,7 @@ import { Plus, Trash2, Footprints, Flag, Calendar, Gauge } from "lucide-react"
 import { toast } from "sonner"
 import { api } from "@/lib/api"
 import { Button } from "@/components/ui/button"
+import { DatePicker } from "@/components/ui/date-picker"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { EmptyState } from "@/components/ui/empty-state"
@@ -258,7 +259,7 @@ export default function ShoesPage() {
     <div className="animate-in space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-bold tracking-tight">Shoes</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Shoes</h2>
           <p className="text-sm text-muted-foreground">Track your running shoe mileage</p>
         </div>
         <Button onClick={() => setDialogOpen(true)}>
@@ -324,11 +325,7 @@ export default function ShoesPage() {
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Purchase Date</label>
-                <Input
-                  type="date"
-                  value={form.purchaseDate}
-                  onChange={(e) => setForm({ ...form, purchaseDate: e.target.value })}
-                />
+                <DatePicker value={form.purchaseDate} onChange={(v) => setForm({ ...form, purchaseDate: v })} />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Max Mileage (km)</label>

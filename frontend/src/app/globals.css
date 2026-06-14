@@ -100,6 +100,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.motion-safe\:animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
 .animate-in {
   animation: fade-in-up 0.4s ease-out;
 }

@@ -211,20 +211,20 @@ export default function WorkoutDetailPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="text-left text-xs text-muted-foreground">
-                          <th className="w-12 pb-1 font-medium">Set</th>
-                          <th className="pb-1 font-medium">kg</th>
-                          <th className="pb-1 font-medium">Reps</th>
-                          <th className="pb-1 font-medium">RPE</th>
+                        <tr className="text-left text-xs text-muted-foreground border-b border-border/20">
+                          <th className="pb-2 font-medium">Set</th>
+                          <th className="pb-2 font-medium">kg</th>
+                          <th className="pb-2 font-medium">Reps</th>
+                          <th className="pb-2 font-medium">RPE</th>
                         </tr>
                       </thead>
                       <tbody>
                         {we.sets.map((set) => (
-                          <tr key={set.id} className="border-t border-border/20">
-                            <td className="py-1.5 text-muted-foreground">{set.setNumber}</td>
-                            <td className="py-1.5 font-medium text-card-foreground">{set.weightKg ?? "-"}</td>
-                            <td className="py-1.5 text-card-foreground">{set.reps ?? "-"}</td>
-                            <td className="py-1.5 text-muted-foreground">{set.rpe ?? "-"}</td>
+                          <tr key={set.id} className="border-b border-border/10 transition-colors hover:bg-muted/20 last:border-b-0">
+                            <td className="py-2 text-muted-foreground">{set.setNumber}</td>
+                            <td className="py-2 font-medium text-card-foreground">{set.weightKg ?? "-"}</td>
+                            <td className="py-2 text-card-foreground">{set.reps ?? "-"}</td>
+                            <td className="py-2 text-muted-foreground">{set.rpe ?? "-"}</td>
                           </tr>
                         ))}
                       </tbody>

@@ -1,0 +1,64 @@
+.rdp-custom {
+  --rdp-accent-color: hsl(var(--primary));
+  --rdp-accent-background-color: hsl(var(--primary) / 0.12);
+  --rdp-today-color: hsl(var(--primary-foreground));
+  padding: 10px;
+}
+
+.rdp-custom .rdp-day_button {
+  border-radius: 10px;
+  font-weight: 500;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.rdp-custom .rdp-day_button:hover {
+  background-color: hsl(var(--primary) / 0.08);
+}
+
+.rdp-custom .rdp-today:not(.rdp-outside) .rdp-day_button {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: transparent;
+}
+
+.rdp-custom .rdp-selected .rdp-day_button {
+  border-color: hsl(var(--primary));
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+.rdp-custom .rdp-selected.rdp-today:not(.rdp-outside) .rdp-day_button {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: var(--rdp-selected-border);
+}
+
+.rdp-custom .rdp-month_caption {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.rdp-custom .rdp-caption_label {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.rdp-custom .rdp-button_next:hover,
+.rdp-custom .rdp-button_previous:hover {
+  background-color: hsl(var(--primary) / 0.1);
+  border-radius: 8px;
+}
+
+.rdp-custom .rdp-chevron {
+  fill: hsl(var(--primary));
+}
+
+.rdp-custom .rdp-weekday {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rdp-custom .rdp-outside {
+  opacity: 0.4;
+}

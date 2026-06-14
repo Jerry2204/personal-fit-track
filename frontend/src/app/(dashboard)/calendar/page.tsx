@@ -722,7 +722,7 @@ export default function CalendarPage() {
       {/* Summary cards below calendar */}
       {!isLoading && data && data.days.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div className="rounded-xl border bg-card p-4 flex items-center gap-3">
+          <div className="rounded-xl border bg-card p-4 flex items-center gap-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
             <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
               <Dumbbell className="h-5 w-5 text-primary" />
             </div>
@@ -733,7 +733,7 @@ export default function CalendarPage() {
               <p className="text-xs text-muted-foreground mt-1">Workouts</p>
             </div>
           </div>
-          <div className="rounded-xl border bg-card p-4 flex items-center gap-3">
+          <div className="rounded-xl border bg-card p-4 flex items-center gap-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
             <div className="h-10 w-10 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0">
               <Footprints className="h-5 w-5 text-orange-500" />
             </div>
@@ -744,7 +744,7 @@ export default function CalendarPage() {
               <p className="text-xs text-muted-foreground mt-1">Runs</p>
             </div>
           </div>
-          <div className="rounded-xl border bg-card p-4 flex items-center gap-3">
+          <div className="rounded-xl border bg-card p-4 flex items-center gap-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
             <div className="h-10 w-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
               <Weight className="h-5 w-5 text-emerald-500" />
             </div>
@@ -755,7 +755,7 @@ export default function CalendarPage() {
               <p className="text-xs text-muted-foreground mt-1">Progress Logs</p>
             </div>
           </div>
-          <div className="rounded-xl border bg-card p-4 flex items-center gap-3">
+          <div className="rounded-xl border bg-card p-4 flex items-center gap-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
             <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
               <CheckCircle2 className="h-5 w-5 text-blue-500" />
             </div>
@@ -771,7 +771,7 @@ export default function CalendarPage() {
 
       {/* Streak info */}
       {!isLoading && data && data.days.length > 0 && (
-        <div className="rounded-xl border bg-card p-4 flex items-center gap-3">
+        <div className="rounded-xl border bg-card p-4 flex items-center gap-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
           <div className="h-10 w-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
             <Flame className="h-5 w-5 text-amber-500" />
           </div>

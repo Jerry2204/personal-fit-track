@@ -137,14 +137,14 @@ export default function AchievementsPage() {
   return (
     <div className="animate-in space-y-6">
       <div>
-        <h2 className="text-lg font-bold tracking-tight">Achievements</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Achievements</h2>
         <p className="text-sm text-muted-foreground">Track your milestones and badges</p>
       </div>
 
       {/* Summary Cards */}
       {summary && (
         <div className="grid gap-4 sm:grid-cols-4">
-          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg">
+          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Trophy className="h-4 w-4" />
               <span>Unlocked</span>
@@ -153,7 +153,7 @@ export default function AchievementsPage() {
               {summary.unlocked} <span className="text-sm font-normal text-muted-foreground">/ {summary.total}</span>
             </p>
           </div>
-          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg">
+          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Medal className="h-4 w-4" />
               <span>Rank</span>
@@ -164,7 +164,7 @@ export default function AchievementsPage() {
               </Badge>
             </div>
           </div>
-          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg">
+          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Flame className="h-4 w-4 text-orange-500" />
               <span>Current Streak</span>
@@ -173,7 +173,7 @@ export default function AchievementsPage() {
               {summary.streak} <span className="text-sm font-normal text-muted-foreground">days</span>
             </p>
           </div>
-          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg">
+          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Target className="h-4 w-4" />
               <span>Progress</span>

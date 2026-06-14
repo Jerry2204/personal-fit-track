@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import { Plus, Trash2, Droplets, Moon, Footprints, Zap, Drumstick, Brain, Heart, Apple } from "lucide-react"
+import { Plus, Trash2, Droplets, Moon, Footprints, Zap, Drumstick, Brain, Heart, Apple, Pencil } from "lucide-react"
 import { toast } from "sonner"
 import { api } from "@/lib/api"
 import { Button } from "@/components/ui/button"
+import { DatePicker } from "@/components/ui/date-picker"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
@@ -363,7 +364,7 @@ export default function HabitsPage() {
 
       {/* Today Quick Summary */}
       {todayEntry && !isLoading && (
-        <div className="rounded-xl border bg-card p-4">
+        <div className="rounded-xl border bg-card p-4 transition-all duration-300 hover:shadow-lg">
           <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
             Today&apos;s Summary
           </h3>
@@ -421,12 +422,7 @@ export default function HabitsPage() {
             <h3 className="text-sm font-semibold text-card-foreground">
               {editEntry ? "Edit Entry" : "New Habit Log"}
             </h3>
-            <Input
-              type="date"
-              value={form.date}
-              onChange={(e) => setForm({ ...form, date: e.target.value })}
-              className="w-40 h-8 text-xs"
-            />
+            <DatePicker value={form.date} onChange={(v) => setForm({ ...form, date: v })} className="w-40 h-8 text-xs" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -638,14 +634,14 @@ export default function HabitsPage() {
               </div>
 
               <div className="flex items-center gap-1 shrink-0">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8"
-                  onClick={(e) => { e.stopPropagation(); handleEdit(entry) }}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
-                </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={(e) => { e.stopPropagation(); handleEdit(entry) }}
+                  >
+                    <Pencil className="h-3.5 w-3.5 text-muted-foreground" />
+                  </Button>
                 <Button
                   variant="ghost"
                   size="icon"

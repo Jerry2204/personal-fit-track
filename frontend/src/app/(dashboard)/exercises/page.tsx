@@ -161,7 +161,7 @@ export default function ExercisesPage() {
     <div className="animate-in space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-bold tracking-tight">Exercise Library</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Exercise Library</h2>
           <p className="text-sm text-muted-foreground">
             Browse and manage your exercise catalog
           </p>

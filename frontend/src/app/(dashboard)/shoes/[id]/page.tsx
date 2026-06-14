@@ -157,14 +157,10 @@ export default function ShoeDetailPage() {
 
   return (
     <div className="animate-in space-y-6">
-      <button
-        type="button"
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-card-foreground transition-colors"
-      >
+      <Button variant="ghost" size="sm" onClick={() => router.back()} className="w-fit gap-1.5 text-muted-foreground">
         <ArrowLeft className="h-4 w-4" />
         Back
-      </button>
+      </Button>
 
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">

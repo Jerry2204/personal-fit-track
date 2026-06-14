@@ -161,7 +161,7 @@ export default function SettingsPage() {
   return (
     <div className="animate-in space-y-6">
       <div>
-        <h2 className="text-lg font-bold tracking-tight">Settings</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
         <p className="text-sm text-muted-foreground">Manage your profile and preferences</p>
       </div>
 

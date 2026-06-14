@@ -124,7 +124,7 @@ export default function RunningPage() {
     <div className="animate-in space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-bold tracking-tight">Running</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Running</h2>
           <p className="text-sm text-muted-foreground">Track your runs and progress</p>
         </div>
         <div className="flex items-center gap-2">
@@ -142,15 +142,15 @@ export default function RunningPage() {
 
       {!isLoading && !isError && data && data.data.length > 0 && (
         <div className="grid grid-cols-3 gap-4">
-          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             <p className="text-2xl font-bold">{totalRuns}</p>
             <p className="text-xs text-muted-foreground">total runs</p>
           </div>
-          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             <p className="text-2xl font-bold">{totalDistance.toFixed(1)}</p>
             <p className="text-xs text-muted-foreground">total km</p>
           </div>
-          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground">
+          <div className="rounded-2xl border border-border/40 bg-card p-4 shadow-lg text-card-foreground transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             <p className="text-2xl font-bold">
               {data.data.length > 0
                 ? formatPace(

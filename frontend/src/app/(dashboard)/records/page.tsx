@@ -285,7 +285,7 @@ export default function RecordsPage() {
   return (
     <div className="animate-in space-y-6">
       <div>
-        <h2 className="text-lg font-bold tracking-tight">Personal Records</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Personal Records</h2>
         <p className="text-sm text-muted-foreground">Your all-time best achievements</p>
       </div>
 

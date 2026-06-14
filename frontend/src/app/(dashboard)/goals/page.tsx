@@ -6,6 +6,7 @@ import { Plus, Target, Trash2, CheckCircle2, Pencil } from "lucide-react"
 import { toast } from "sonner"
 import { api } from "@/lib/api"
 import { Button } from "@/components/ui/button"
+import { DatePicker } from "@/components/ui/date-picker"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -238,7 +239,7 @@ export default function GoalsPage() {
     <div className="animate-in space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-bold tracking-tight">Goals</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Goals</h2>
           <p className="text-sm text-muted-foreground">Set and track your fitness goals</p>
         </div>
         <Button onClick={openCreate}>
@@ -407,7 +408,7 @@ export default function GoalsPage() {
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Deadline (optional)</label>
-              <Input type="date" value={form.deadline} onChange={(e) => setForm({ ...form, deadline: e.target.value })} />
+              <DatePicker value={form.deadline} onChange={(v) => setForm({ ...form, deadline: v })} />
             </div>
             <div className="flex justify-end gap-3 pt-2">
               <Button type="button" variant="destructive" onClick={() => { setDialogOpen(false); setEditingGoal(null) }}>

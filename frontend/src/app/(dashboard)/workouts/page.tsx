@@ -94,7 +94,7 @@ export default function WorkoutsPage() {
     <div className="animate-in space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-bold tracking-tight">Workouts</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Workouts</h2>
           <p className="text-sm text-muted-foreground">
             Track and review your gym sessions
           </p>
