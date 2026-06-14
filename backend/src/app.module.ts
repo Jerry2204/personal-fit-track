@@ -16,9 +16,12 @@ import { ShoesModule } from './shoes/shoes.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ReportsModule } from './reports/reports.module';
 import { ProfileModule } from './profile/profile.module';
+import { AchievementsModule } from './achievements/achievements.module';
+import { ExportModule } from './export/export.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule, PersonalRecordsModule, ShoesModule, DashboardModule, ReportsModule, ProfileModule],
+  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule, PersonalRecordsModule, ShoesModule, DashboardModule, ReportsModule, ProfileModule, AchievementsModule, ExportModule, NotificationsModule],
   controllers: [AppController],
   providers: [AppService],
 })

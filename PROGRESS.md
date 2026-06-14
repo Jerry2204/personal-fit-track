@@ -359,6 +359,106 @@ All charts: responsive (ResponsiveContainer), styled tooltips, empty states, the
 - Frontend `next build` — 20 routes (`/settings` added), all clean
 - Backend `tsc --noEmit` — clean
 
+## Phase: Achievements & Gamification
+
+### Completed (Date: 2026-06-14)
+
+**Backend — AchievementsModule**
+- `achievements.module.ts`, `achievements.controller.ts`, `achievements.service.ts`
+- `GET /achievements` (JWT guarded) — computes 21 achievements on-the-fly from existing data (no DB storage):
+  - **Streak badges** (4): First Step (1 day), On a Roll (7), Unstoppable (14), Consistency King (30) — current streak from consecutive habit log days
+  - **Workout milestones** (5): First Session (1), Getting Started (10), Dedicated (25), Iron Warrior (50), Gym Legend (100) — total workout count
+  - **Running milestones** (5): First Run (1 run), 5K Runner (5 km total), 10K Runner (10 km), Half Marathoner (21.1 km), Century Runner (100 km) — total run distance
+  - **Consistency achievements** (3): Week Warrior (7 habit days total), Monthly Master (max days in a single month), Year Warrior (200 habit days total)
+  - **Goal achievements** (4): First Goal (1), Goal Getter (5), Achiever (10), Overachiever (20) — completed goal count
+- Returns `{ achievements: Achievement[], summary: { total, unlocked, rank, streak } }`
+  - Rank auto-calculated: Beginner (0-1), Rookie (2-24%), Intermediate (25-49%), Veteran (50-79%), Elite (80-100%)
+  - Current streak computed from consecutive habit log days backward from today
+- All types exported: `AchievementDef`, `AchievementResult`, `AchievementsResponse`
+
+**Frontend — Achievements Page (`/achievements`)**
+- Summary row (4 stat cards): Unlocked count, Rank badge, Current streak, Overall %
+- Category filter tabs with icons and count badges: All, Streak, Workout, Running, Consistency, Goals
+- Card grid (responsive: 1→2→3 cols), each card shows:
+  - Category-colored icon, title, description
+  - Progress bar with current/target values and percentage
+  - Gold trophy icon for unlocked achievements
+  - Subtle gradient background for unlocked cards, dimmed for locked
+- Loading skeleton grid, empty state, error state
+
+**Nav Updates**
+- Sidebar: added `/achievements` (Medal icon) between Habits and Calendar
+- Topbar: added `/achievements` → "Achievements" title mapping
+
+**Build Verification**
+- Frontend `next build` — 21 routes (`/achievements` added), all clean
+- Backend `tsc --noEmit` — clean
+
+## Phase: Export CSV/PDF
+
+### Completed (Date: 2026-06-14)
+
+**Backend — ExportModule**
+- `export.module.ts`, `export.controller.ts`, `export.service.ts`
+- 5 authenticated CSV endpoints returning proper `Content-Type: text/csv` + `Content-Disposition: attachment` headers:
+  - `GET /export/workouts/csv` — all workouts with exercises/sets flattened (columns: Date, Type, Duration, Exercise, Muscle Group, Set#, Weight, Reps, RPE, Notes)
+  - `GET /export/runs/csv` — all run activities (columns: Date, Type, Distance, Duration, Avg Pace, Avg HR, Calories, Shoe, Notes)
+  - `GET /export/body-progress/csv` — all body progress entries (columns: Date, Weight, Body Fat %, Waist, Chest, Arm, Thigh, Notes)
+  - `GET /export/reports/monthly/csv?year=&month=` — per-day activity breakdown for a month
+  - `GET /export/reports/yearly/csv?year=` — per-month summary (workouts, volume, running distance, running duration, run days)
+- CSV generation handles proper escaping (commas, quotes, newlines) via RFC 4180
+- All data scoped to authenticated user
+
+**Frontend — Export Integration**
+- `lib/export-utils.ts` — `downloadCsv(path, filename)` helper: fetches with JWT, creates blob, triggers download via hidden anchor
+- **Workouts page** — Download button (outline icon) added next to "New Workout"
+- **Running page** — Download button (outline icon) added next to "New Run"
+- **Body Progress page** — Download button (outline icon) added next to "Add Measurement"
+- **Reports page** — CSV Download button + Print button (Printer icon) side by side in header. CSV uses current tab/year/month for filename (`monthly-report-2026-06.csv`). Print already supported via `window.print()` with `print:hidden`/`print:block` CSS.
+
+**Build Verification**
+- Frontend `next build` — 21 routes, all clean
+- Backend `tsc --noEmit` — clean
+
 ### Next Steps
 
 1. Implement **Workout Plan Feature** (backend + frontend)
+## Phase: Notification Center
+
+### Completed (Date: 2026-06-14)
+
+**Prisma Schema**
+- Added `Notification` model: id, userId, type, title, message, severity, link, read, createdAt
+- Added `notifications` relation on User
+- Migration `20260614142758_add_notifications` applied
+
+**Backend — NotificationsModule**
+- `notifications.module.ts`, `notifications.controller.ts`, `notifications.service.ts`
+- `GET /notifications` — paginated list, newest first
+- `GET /notifications/unread-count` — count of unread
+- `PATCH /notifications/:id/read` — mark single as read
+- `PATCH /notifications/read-all` — mark all as read
+- `POST /notifications/check` — auto-generate notifications via state checks:
+  - Goal reminders: overdue goals, deadlines within 7/2 days
+  - Workout reminder: no workout in 3+ days (or no workouts ever)
+  - Habit reminder: no habit log for today
+  - Achievement: first run, 5K/10K/21.1K/100K milestones, 1/10/25/50/100 workouts, 1/5/10 goals completed, 1/7/30 habit days
+- Deduplication: checks existing notifications with same title within last 24h before creating
+- Registered in `AppModule` (now 20 modules)
+
+**Frontend — NotificationBell**
+- `components/notification-bell.tsx` — bell icon in topbar with unread badge count
+- Opens right Sheet panel with notification list
+- Calls `POST /notifications/check` on panel open (generates new notifications on-the-fly)
+- Each notification shows severity-colored icon (Target, Dumbbell, ClipboardList, Trophy), title, message, relative timestamp
+- Unread notifications have highlighted background + mark-read button
+- "Mark all read" button in header
+- Empty state when no notifications
+- Loading spinner while fetching
+- `components/ui/scroll-area.tsx` — simple scroll wrapper
+
+**Build Verification**
+- Frontend `next build` — 22 routes, all clean
+- Backend `tsc --noEmit` — clean
+
+### Next Steps

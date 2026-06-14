@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import { Plus, Trash2, Weight, Activity } from "lucide-react"
+import { Plus, Trash2, Weight, Activity, Download } from "lucide-react"
 import { toast } from "sonner"
 import { api } from "@/lib/api"
+import { downloadCsv } from "@/lib/export-utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -138,10 +139,15 @@ export default function BodyProgressPage() {
           <h2 className="text-lg font-bold tracking-tight">Body Progress</h2>
           <p className="text-sm text-muted-foreground">Track your measurements over time</p>
         </div>
-        <Button onClick={() => setShowForm(!showForm)}>
-          <Plus className="mr-1.5 h-4 w-4" />
-          {showForm ? "Close Form" : "Add Measurement"}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="icon" onClick={() => downloadCsv("/export/body-progress/csv", "body-progress.csv")} title="Export CSV">
+            <Download className="h-4 w-4" />
+          </Button>
+          <Button onClick={() => setShowForm(!showForm)}>
+            <Plus className="mr-1.5 h-4 w-4" />
+            {showForm ? "Close Form" : "Add Measurement"}
+          </Button>
+        </div>
       </div>
 
       {showForm && (

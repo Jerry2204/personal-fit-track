@@ -16,6 +16,7 @@ import {
   Trophy,
   Zap,
   Download,
+  Printer,
   Medal,
 } from "lucide-react"
 import {
@@ -30,6 +31,7 @@ import {
   ResponsiveContainer,
 } from "recharts"
 import { api } from "@/lib/api"
+import { downloadCsv } from "@/lib/export-utils"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { EmptyState } from "@/components/ui/empty-state"
@@ -424,8 +426,24 @@ export default function ReportsPage() {
               </select>
             </div>
           )}
-          <Button variant="outline" size="icon" onClick={handlePrint} title="Print report">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => {
+              const path = tab === "monthly"
+                ? `/export/reports/monthly/csv?year=${year}&month=${month}`
+                : `/export/reports/yearly/csv?year=${year}`
+              const filename = tab === "monthly"
+                ? `monthly-report-${year}-${String(month).padStart(2, "0")}.csv`
+                : `yearly-report-${year}.csv`
+              downloadCsv(path, filename)
+            }}
+            title="Export CSV"
+          >
             <Download className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="icon" onClick={handlePrint} title="Print / PDF">
+            <Printer className="h-4 w-4" />
           </Button>
         </div>
       </div>

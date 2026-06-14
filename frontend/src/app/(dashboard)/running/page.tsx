@@ -3,9 +3,10 @@
 import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import Link from "next/link"
-import { Plus, Footprints, Trash2 } from "lucide-react"
+import { Plus, Footprints, Trash2, Download } from "lucide-react"
 import { toast } from "sonner"
 import { api } from "@/lib/api"
+import { downloadCsv } from "@/lib/export-utils"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { EmptyState } from "@/components/ui/empty-state"
@@ -126,12 +127,17 @@ export default function RunningPage() {
           <h2 className="text-lg font-bold tracking-tight">Running</h2>
           <p className="text-sm text-muted-foreground">Track your runs and progress</p>
         </div>
-        <Link href="/running/new">
-          <Button>
-            <Plus className="mr-1.5 h-4 w-4" />
-            New Run
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="icon" onClick={() => downloadCsv("/export/runs/csv", "runs.csv")} title="Export CSV">
+            <Download className="h-4 w-4" />
           </Button>
-        </Link>
+          <Link href="/running/new">
+            <Button>
+              <Plus className="mr-1.5 h-4 w-4" />
+              New Run
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {!isLoading && !isError && data && data.data.length > 0 && (

@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { useSidebar } from "./sidebar-provider"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { NotificationBell } from "@/components/notification-bell"
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Dashboard",
@@ -20,6 +21,7 @@ const pageTitles: Record<string, string> = {
   "/habits": "Habits",
   "/calendar": "Calendar",
   "/reports": "Reports",
+  "/achievements": "Achievements",
   "/settings": "Settings",
 }
 
@@ -45,7 +47,8 @@ export function Topbar() {
         <h1 className="text-lg font-bold tracking-tight">{pageTitle}</h1>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1 sm:gap-3">
+        <NotificationBell />
         <ThemeToggle />
         <Avatar className="size-8 cursor-pointer border-2 border-primary/10 transition-all hover:border-primary/30">
           <AvatarFallback className="bg-primary/10 text-xs font-semibold text-primary">

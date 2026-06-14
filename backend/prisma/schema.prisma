@@ -115,6 +115,7 @@ model User {
   habitLogs      HabitLog[]
   shoes          Shoe[]
   exercises      Exercise[]
+  notifications  Notification[]
 
   @@index([email])
 }
@@ -310,4 +311,22 @@ model Shoe {
   runActivities RunActivity[]
 
   @@index([userId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // goal_reminder, habit_reminder, workout_reminder, achievement, system
+  title     String
+  message   String
+  severity  String   // info, warning, success
+  link      String?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, read])
+  @@index([userId, createdAt])
 }
