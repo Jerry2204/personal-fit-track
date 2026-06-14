@@ -12,6 +12,7 @@ import { NotificationBell } from "@/components/notification-bell"
 const pageTitles: Record<string, string> = {
   "/dashboard": "Dashboard",
   "/workouts": "Workouts",
+  "/workout-plans": "Workout Plans",
   "/running": "Running",
   "/shoes": "Shoes",
   "/exercises": "Exercises",
@@ -26,12 +27,20 @@ const pageTitles: Record<string, string> = {
   "/settings": "Settings",
 }
 
+function getPageTitle(pathname: string): string {
+  if (pageTitles[pathname]) return pageTitles[pathname]
+  for (const [prefix, title] of Object.entries(pageTitles)) {
+    if (pathname.startsWith(prefix + "/") && prefix !== "/") return title
+  }
+  return "Dashboard"
+}
+
 export function Topbar() {
   const pathname = usePathname()
   const { user } = useAuthStore()
   const { collapsed, setCollapsed } = useSidebar()
 
-  const pageTitle = pageTitles[pathname] || "Dashboard"
+  const pageTitle = getPageTitle(pathname)
 
   return (
     <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-border bg-background/90 backdrop-blur-md px-4 sm:px-6 lg:px-8 shadow-sm">

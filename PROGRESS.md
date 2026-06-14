@@ -563,4 +563,46 @@ All charts: responsive (ResponsiveContainer), styled tooltips, empty states, the
 - Frontend `next build` — compiles cleanly, all 23 routes resolved
 - Backend `nest build` — clean
 
+## Phase: Auth Polish — Guest-Only Route Guard
+
+### Completed (Date: 2026-06-15)
+
+**Fixed: Authenticated users can access login/register pages**
+- Added `"use client"` + guest-only guard to `frontend/src/app/(auth)/layout.tsx`
+- On mount, calls `checkAuth()` from auth store
+- If already authenticated, redirects to `/dashboard`
+- Shows loading spinner while checking, prevents flash of auth form
+
+## Phase: Workout Plans Feature
+
+### Completed (Date: 2026-06-15)
+
+**Initial Implementation (v1)**
+- Added `PlanDayStatus` enum, `WorkoutPlan` + `WorkoutPlanDay` models, CRUD backend module, 3 frontend pages, sidebar/topbar nav
+- Build: 24 routes, backend clean
+
+### Updated (Date: 2026-06-15) — Multi-Activity per Day + Run Targets
+
+**Prisma Schema Changes**
+- Added `ActivityType` enum: Workout, Run, Rest
+- Added `WorkoutPlanDayActivity` model with: activityType, name, workoutType, runType, targetDistanceKm, targetDurationMinutes, targetPace, status, completedDate, workoutId, runId
+- Slimmed `WorkoutPlanDay` to container-only: removed workoutType, runType, isRestDay, status, completedDate, workoutId, runId
+- Updated Workout/RunActivity reverse relations to `planDayActivities`
+- Migration `20260614172754_add_plan_day_activities` applied
+
+**Backend Updates**
+- DTOs: `CreatePlanActivityDto` + `UpdatePlanActivityDto` with activityType (Workout/Run), workoutType/runType discriminators, run targets (targetDistanceKm, targetDurationMinutes, targetPace)
+- `UpdateActivityStatusDto` replaces `UpdatePlanDayStatusDto` — now targets individual activities
+- Service: days create with nested activities, progress computed from activity counts, `updateActivityStatus()` patches individual activities
+- Controller: endpoint changed to `PATCH /:id/activities/:activityId`
+
+**Frontend Updates**
+- `/workout-plans/new` — each day now has "Add Workout" / "Add Run" buttons, multiple activities per day with individual forms (name, type selector, run target fields)
+- `/workout-plans/[id]` — day sections show nested activity cards with individual status controls (Complete/Skip/Reset), run targets displayed (distance km / duration min), linked workout/run info
+- `/workout-plans` — list uses `totalActivities`/`completedActivities`/`skippedActivities` fields
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, 24 routes
+- Backend `nest build` — clean
+
 ### Next Steps

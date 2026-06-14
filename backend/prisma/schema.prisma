@@ -100,6 +100,19 @@ enum Mood {
   Terrible
 }
 
+enum ActivityType {
+  Workout
+  Run
+  Rest
+}
+
+enum PlanDayStatus {
+  Pending
+  Completed
+  Skipped
+  Rescheduled
+}
+
 model User {
   id           String   @id @default(cuid())
   email        String   @unique
@@ -116,6 +129,7 @@ model User {
   shoes          Shoe[]
   exercises      Exercise[]
   notifications  Notification[]
+  workoutPlans   WorkoutPlan[]
 
   @@index([email])
 }
@@ -168,8 +182,9 @@ model Workout {
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
 
-  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
-  workoutExercises WorkoutExercise[]
+  user               User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workoutExercises   WorkoutExercise[]
+  planDayActivities  WorkoutPlanDayActivity[]
 
   @@index([userId])
   @@index([userId, date])
@@ -221,8 +236,9 @@ model RunActivity {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  shoe Shoe? @relation(fields: [shoeId], references: [id], onDelete: SetNull)
+  user              User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shoe              Shoe?                   @relation(fields: [shoeId], references: [id], onDelete: SetNull)
+  planDayActivities WorkoutPlanDayActivity[]
 
   @@index([userId])
   @@index([userId, date])
@@ -329,4 +345,62 @@ model Notification {
   @@index([userId])
   @@index([userId, read])
   @@index([userId, createdAt])
+}
+
+model WorkoutPlan {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  startDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  days WorkoutPlanDay[]
+
+  @@index([userId])
+  @@index([userId, startDate])
+}
+
+model WorkoutPlanDay {
+  id            String   @id @default(cuid())
+  workoutPlanId String
+  dayOfWeek     Int      // 0=Sun, 1=Mon, ..., 6=Sat
+  name          String?  // label for the day, e.g. "Push Day"
+  notes         String?  // day-level notes
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  workoutPlan WorkoutPlan          @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
+  activities   WorkoutPlanDayActivity[]
+
+  @@index([workoutPlanId])
+}
+
+model WorkoutPlanDayActivity {
+  id            String        @id @default(cuid())
+  workoutPlanDayId String
+  sortOrder     Int           @default(0)
+  activityType  ActivityType
+  name          String?       // e.g. "Morning Push", "Easy Run"
+  workoutType   WorkoutType?
+  runType       RunType?
+  targetDistanceKm Float?
+  targetDurationMinutes Int?
+  targetPace    Float?
+  notes         String?
+  status        PlanDayStatus @default(Pending)
+  completedDate DateTime?
+  workoutId     String?
+  runId         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  workoutPlanDay WorkoutPlanDay @relation(fields: [workoutPlanDayId], references: [id], onDelete: Cascade)
+  workout        Workout?       @relation(fields: [workoutId], references: [id], onDelete: SetNull)
+  run            RunActivity?   @relation(fields: [runId], references: [id], onDelete: SetNull)
+
+  @@index([workoutPlanDayId])
+  @@index([status])
 }

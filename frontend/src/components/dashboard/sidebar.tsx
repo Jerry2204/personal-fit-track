@@ -25,12 +25,14 @@ import {
   SportShoe,
   Medal,
   TrendingUp,
+  CalendarArrowUp,
 } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/workouts", label: "Workouts", icon: Dumbbell },
+  { href: "/workout-plans", label: "Plans", icon: CalendarArrowUp },
   { href: "/running", label: "Running", icon: Footprints },
   { href: "/shoes", label: "Shoes", icon: SportShoe },
   { href: "/exercises", label: "Exercises", icon: BookOpen },
