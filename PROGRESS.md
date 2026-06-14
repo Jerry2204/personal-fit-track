@@ -49,10 +49,48 @@
   - Routes: `/running`, `/running/new`, `/running/[id]`
 - Backend `tsc --noEmit` — no errors
 
+## Phase: Body Progress Tracker MVP
+
+### Completed (Date: 2026-06-14)
+
+**Backend — BodyProgressModule**
+- `CreateBodyProgressDto` — validation for date, weightKg, bodyFatPercent, waistCm, chestCm, armCm, thighCm, notes (all optional except at least one field expected)
+- `UpdateBodyProgressDto` — all fields optional for partial updates
+- `QueryBodyProgressDto` — date range filter, pagination
+- `BodyProgressService` — create, findAll with pagination, findOne, findLatest (ordered by date desc), update, delete with ownership check
+- `BodyProgressController` — CRUD endpoints under `/body-progress` (+ `GET /body-progress/latest`)
+- Registered in `AppModule`
+
+**Frontend — Body Progress Page**
+- `body-progress/page.tsx` — single page with toggleable add form (date, weight, body fat %, waist, chest, arm, thigh, notes), latest stats summary cards, history table with all columns, loading/empty/error states, delete with AlertDialog + toast
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, route `/body-progress` resolved
+- Backend `tsc --noEmit` — no errors
+
+## Phase: Goals MVP
+
+### Completed (Date: 2026-06-14)
+
+**Backend — GoalsModule**
+- `CreateGoalDto` — validation for name, type, targetValue, currentValue, unit, deadline
+- `UpdateGoalDto` — all fields optional, includes status override
+- `QueryGoalDto` — type filter, status filter
+- `GoalsService` — create; findAll with type/status filters and computed `progress` (%); findOne with progress; update; complete (sets status=Completed, currentValue=targetValue); delete with ownership check
+- `GoalsController` — CRUD endpoints under `/goals` (+ `PATCH /goals/:id/complete`)
+- Registered in `AppModule`
+
+**Frontend — Goals Page**
+- `goals/page.tsx` — full-featured single page: status filter (All/Active/Completed/Failed), goal cards with progress bar, type badge (color-coded), status badge, current/target values, action buttons (complete/edit/delete), create/edit dialog with name/type/target/current/unit/deadline fields, loading/empty/error states, AlertDialog + toast for delete
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, route `/goals` resolved
+- Backend `tsc --noEmit` — no errors
+
 ### Next Steps
 
 1. Implement **ProfileModule** (backend) + Settings page (frontend)
 2. Wire dashboard stats to real API data instead of mock data
-3. Implement **BodyProgressModule** + body progress page
-4. Implement **GoalsModule** + goals page
-5. Implement **HabitLogsModule** + habit log page
+3. Implement **HabitLogsModule** + habit log page
+4. Implement **ShoesModule** + shoe mileage tracker
+5. Implement **DashboardModule** backend for aggregated stats

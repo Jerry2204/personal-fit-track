@@ -7,9 +7,11 @@ import { UsersModule } from './users/users.module';
 import { ExercisesModule } from './exercises/exercises.module';
 import { WorkoutsModule } from './workouts/workouts.module';
 import { RunsModule } from './runs/runs.module';
+import { BodyProgressModule } from './body-progress/body-progress.module';
+import { GoalsModule } from './goals/goals.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule],
+  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule],
   controllers: [AppController],
   providers: [AppService],
 })
