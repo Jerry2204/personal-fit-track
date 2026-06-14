@@ -605,4 +605,45 @@ All charts: responsive (ResponsiveContainer), styled tooltips, empty states, the
 - Frontend `next build` — compiles cleanly, 24 routes
 - Backend `nest build` — clean
 
+## Phase: Profile Picture Upload
+
+### Completed (Date: 2026-06-15)
+
+**Prisma Schema**
+- Added `avatarUrl String?` to Profile model
+- Migration `20260614173655_add_avatar_url` applied
+
+**Backend — Avatar Upload**
+- Installed `sharp` (image processing), `@nestjs/serve-static` (serving uploads), `@types/multer` (file upload types)
+- `ProfileAvatarController` — `POST /profile/avatar` with multer file interceptor:
+  - File validation: MIME type filter (JPEG/PNG/WebP/AVIF), 2MB max file size via `ParseFilePipeBuilder`
+  - Temporary file on disk → sharp processing (metadata validation, min 100×100px, max 5000×5000px)
+  - Resize to 200×200 cover, convert to WebP quality 85
+  - Unique filename: `avatar-{userId}-{timestamp}.webp`
+  - Deletes old avatar file on replacement
+  - Stores path in Profile.avatarUrl via upsert
+- `main.ts` — added `useStaticAssets` to serve uploads at `/uploads/` prefix
+- `UsersService.findById` — includes profile (avatarUrl, name) for auth/me endpoint
+- `AuthService.getMe` — returns extended user with name + avatarUrl from profile
+
+**Frontend**
+- Auth store (`auth-store.ts`):
+  - Added `avatarUrl?: string | null` to `User` interface
+  - Added `updateUser()` action for reactive avatar updates
+- API client (`api.ts`):
+  - Added `api.upload()` — POST with FormData (no JSON Content-Type) for file uploads
+- Settings page (`settings/page.tsx`):
+  - New `AvatarUpload` component: drag-and-drop zone, browse button, preview, remove, loading state
+  - Client-side validation: MIME type, 2MB size limit before upload
+  - On success → `toast.success` + `updateUser({ avatarUrl })` for instant UI update
+- Avatar display across app:
+  - `sidebar.tsx` — added `AvatarImage` with `user?.avatarUrl`
+  - `topbar.tsx` — added `AvatarImage` with `user?.avatarUrl`
+  - `welcome-section.tsx` — accepts `avatarUrl` prop, displays `AvatarImage`
+  - Dashboard page passes `avatarUrl={user?.avatarUrl}` to WelcomeSection
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, 24 routes
+- Backend `nest build` — clean
+
 ### Next Steps

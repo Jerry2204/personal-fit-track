@@ -1,14 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import { Settings, Save, AlertTriangle } from "lucide-react"
+import { Settings, Save, AlertTriangle, Upload, X, Image } from "lucide-react"
 import { toast } from "sonner"
 import { api } from "@/lib/api"
 import { useAuthStore } from "@/lib/auth-store"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import {
   Select,
   SelectContent,
@@ -31,6 +32,7 @@ interface ProfileData {
   targetWeightKg: number | null
   weeklyWorkoutTarget: number | null
   weeklyRunningTargetKm: number | null
+  avatarUrl: string | null
 }
 
 interface ProfileResponse {
@@ -70,6 +72,143 @@ const defaultForm: ProfileData = {
   targetWeightKg: null,
   weeklyWorkoutTarget: null,
   weeklyRunningTargetKm: null,
+  avatarUrl: null,
+}
+
+function AvatarUpload() {
+  const { user, updateUser } = useAuthStore()
+  const queryClient = useQueryClient()
+  const [preview, setPreview] = useState<string | null>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const fileRef = useRef<HTMLInputElement>(null)
+
+  const handleFile = (file: File | null) => {
+    if (!file) return
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please select an image file")
+      return
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("File too large. Maximum size is 2MB")
+      return
+    }
+
+    const objectUrl = URL.createObjectURL(file)
+    setPreview(objectUrl)
+
+    const formData = new FormData()
+    formData.append("file", file)
+
+    setIsUploading(true)
+    api
+      .upload<{ avatarUrl: string }>("/profile/avatar", formData)
+      .then((res) => {
+        toast.success("Profile picture updated")
+        updateUser({ avatarUrl: res.avatarUrl })
+        queryClient.invalidateQueries({ queryKey: ["profile"] })
+      })
+      .catch((err) => {
+        toast.error(err.message || "Failed to upload")
+        setPreview(null)
+      })
+      .finally(() => {
+        setIsUploading(false)
+      })
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+    handleFile(e.dataTransfer.files[0])
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }
+
+  const handleDragLeave = () => setIsDragging(false)
+
+  const handleRemove = () => {
+    setPreview(null)
+    if (fileRef.current) fileRef.current.value = ""
+    updateUser({ avatarUrl: null })
+  }
+
+  const profileData = queryClient.getQueryData<ProfileResponse>(["profile"])
+  const profileAvatarUrl = profileData?.profile?.avatarUrl
+  const currentSrc = preview || user?.avatarUrl || profileAvatarUrl || undefined
+
+  return (
+    <div className="flex flex-col items-center gap-4 sm:flex-row">
+      <Avatar className="h-20 w-20 border-2 border-border/40 shadow-md">
+        <AvatarImage src={currentSrc} alt="Profile" />
+        <AvatarFallback className="bg-primary/10 text-2xl font-bold text-primary">
+          {user?.email?.charAt(0).toUpperCase() || "U"}
+        </AvatarFallback>
+      </Avatar>
+
+      <div className="flex flex-col gap-2">
+        <div
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onClick={() => fileRef.current?.click()}
+          className={`flex cursor-pointer items-center gap-2 rounded-xl border-2 border-dashed px-5 py-3 text-sm font-medium transition-all ${
+            isDragging
+              ? "border-primary bg-primary/5 text-primary"
+              : "border-border/60 text-muted-foreground hover:border-primary/50 hover:text-primary"
+          }`}
+        >
+          {isUploading ? (
+            <span className="text-xs">Uploading...</span>
+          ) : (
+            <>
+              <Upload className="h-4 w-4" />
+              <span>Choose or drag photo</span>
+            </>
+          )}
+        </div>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => handleFile(e.target.files?.[0] ?? null)}
+        />
+        <div className="flex gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="text-xs"
+            onClick={() => fileRef.current?.click()}
+          >
+            <Image className="mr-1 h-3 w-3" />
+            Browse
+          </Button>
+          {(preview || user?.avatarUrl || profileAvatarUrl) && (
+            <Button
+              type="button"
+              variant="destructive"
+              size="sm"
+              className="text-xs"
+              onClick={handleRemove}
+            >
+              <X className="mr-1 h-3 w-3" />
+              Remove
+            </Button>
+          )}
+        </div>
+        <p className="text-xs text-muted-foreground">
+          Image file. Max 2MB.
+        </p>
+      </div>
+    </div>
+  )
 }
 
 function SettingsSkeleton() {
@@ -90,7 +229,7 @@ function SettingsSkeleton() {
 
 export default function SettingsPage() {
   const queryClient = useQueryClient()
-  const { user } = useAuthStore()
+  const { user, updateUser } = useAuthStore()
   const [form, setForm] = useState<ProfileData>(defaultForm)
   const [loaded, setLoaded] = useState(false)
 
@@ -113,7 +252,11 @@ export default function SettingsPage() {
         targetWeightKg: p?.targetWeightKg ?? null,
         weeklyWorkoutTarget: p?.weeklyWorkoutTarget ?? null,
         weeklyRunningTargetKm: p?.weeklyRunningTargetKm ?? null,
+        avatarUrl: p?.avatarUrl ?? null,
       })
+      if (p?.avatarUrl && p.avatarUrl !== user?.avatarUrl) {
+        updateUser({ avatarUrl: p.avatarUrl })
+      }
       setLoaded(true)
     }
   }, [data, loaded])
@@ -133,7 +276,7 @@ export default function SettingsPage() {
     e.preventDefault()
     const body: Record<string, unknown> = {}
     for (const [key, value] of Object.entries(form)) {
-      if (value !== null && value !== "") {
+      if (value !== null && value !== "" && key !== "avatarUrl") {
         body[key] = value
       }
     }
@@ -164,6 +307,17 @@ export default function SettingsPage() {
         <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
         <p className="text-sm text-muted-foreground">Manage your profile and preferences</p>
       </div>
+
+      {/* Profile Picture */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Profile Picture</CardTitle>
+          <CardDescription>Upload a photo to personalise your account</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <AvatarUpload />
+        </CardContent>
+      </Card>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Account Info */}

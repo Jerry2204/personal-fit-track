@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import { useAuthStore } from "@/lib/auth-store"
 import { useSidebar } from "./sidebar-provider"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import {
   LayoutDashboard,
   Dumbbell,
@@ -120,6 +120,7 @@ export function Sidebar() {
             )}
           >
             <Avatar className={cn("shrink-0 transition-all duration-300", collapsed ? "h-8 w-8" : "h-9 w-9 border-2 border-primary/20")}>
+              <AvatarImage src={user?.avatarUrl || undefined} alt={user?.name || "Avatar"} />
               <AvatarFallback className="bg-primary/10 text-primary font-bold text-xs">
                 {user?.email?.charAt(0).toUpperCase() || "U"}
               </AvatarFallback>

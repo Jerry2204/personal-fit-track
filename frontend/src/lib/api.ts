@@ -49,6 +49,35 @@ async function request<T>(
   return res.json()
 }
 
+async function uploadFile<T>(path: string, formData: FormData): Promise<T> {
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("auth-token") : null
+
+  const headers: Record<string, string> = {}
+
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`
+  }
+
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: "POST",
+    headers,
+    body: formData,
+  })
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({
+      message: "An unexpected error occurred",
+    }))
+    throw new ApiClientError({
+      message: body.message || "An unexpected error occurred",
+      statusCode: res.status,
+    })
+  }
+
+  return res.json()
+}
+
 export const api = {
   get: <T>(path: string) => request<T>(path),
   post: <T>(path: string, body: unknown) =>
@@ -58,4 +87,5 @@ export const api = {
   patch: <T>(path: string, body: unknown) =>
     request<T>(path, { method: "PATCH", body: JSON.stringify(body) }),
   delete: <T>(path: string) => request<T>(path, { method: "DELETE" }),
+  upload: <T>(path: string, formData: FormData) => uploadFile<T>(path, formData),
 }

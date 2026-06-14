@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import { useAuthStore } from "@/lib/auth-store"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useSidebar } from "./sidebar-provider"
 import { Menu } from "lucide-react"
@@ -61,6 +61,7 @@ export function Topbar() {
         <NotificationBell />
         <ThemeToggle />
         <Avatar className="size-8 cursor-pointer border-2 border-primary/10 transition-all hover:border-primary/30">
+          <AvatarImage src={user?.avatarUrl || undefined} alt={user?.name || "Avatar"} />
           <AvatarFallback className="bg-primary/10 text-xs font-semibold text-primary">
             {user?.email?.charAt(0).toUpperCase() || "U"}
           </AvatarFallback>

@@ -77,6 +77,7 @@ export default function DashboardPage() {
         overallStats={data.overallStats}
         profileName={data.profileName}
         userEmail={user?.email || ""}
+        avatarUrl={user?.avatarUrl}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

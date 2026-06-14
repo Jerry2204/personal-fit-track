@@ -1,0 +1,117 @@
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +26ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mExercisesModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkoutsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRunsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBodyProgressModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGoalsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mHabitLogsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPersonalRecordsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mShoesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDashboardModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mReportsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mProfileModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAchievementsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mExportModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNotificationsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mProgressiveOverloadModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkoutPlansModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAppController {/}:[39m[38;5;3m +6ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/auth}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/register, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/login, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/me, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mExercisesController {/exercises}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/exercises, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/exercises, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/exercises/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/exercises/:id, PATCH} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/exercises/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mWorkoutsController {/workouts}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workouts, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workouts, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workouts/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workouts/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workouts/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mRunsController {/runs}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/runs, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/runs, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/runs/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/runs/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/runs/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mBodyProgressController {/body-progress}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/body-progress, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/body-progress, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/body-progress/latest, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/body-progress/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/body-progress/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/body-progress/:id, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mGoalsController {/goals}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/goals, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/goals, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/goals/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/goals/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/goals/:id/complete, PATCH} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/goals/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCalendarController {/calendar}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/calendar, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/calendar/heatmap, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mHabitLogsController {/habit-logs}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/habit-logs, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/habit-logs, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/habit-logs/today, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/habit-logs/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/habit-logs/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/habit-logs/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPersonalRecordsController {/personal-records}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/personal-records, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mShoesController {/shoes}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/shoes, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/shoes/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/shoes, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/shoes/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/shoes/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/shoes/:id/retire, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mDashboardController {/dashboard}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dashboard/analytics, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mReportsController {/reports}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/reports/monthly, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/reports/yearly, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mProfileController {/profile}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/profile, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/profile, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mProfileAvatarController {/profile}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/profile/avatar, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAchievementsController {/achievements}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/achievements, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mExportController {/export}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/export/workouts/csv, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/export/runs/csv, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/export/body-progress/csv, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/export/reports/monthly/csv, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/export/reports/yearly/csv, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mNotificationsController {/notifications}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications/unread-count, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications/:id/read, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications/read-all, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications/check, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mProgressiveOverloadController {/progressive-overload}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/progressive-overload, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mWorkoutPlansController {/workout-plans}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workout-plans, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workout-plans, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workout-plans/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workout-plans/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workout-plans/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/workout-plans/:id/activities/:activityId, PATCH} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 632  - [39m06/15/2026, 12:57:46 AM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +78ms[39m
+
+D:\Project\fittrack-pro\backend>

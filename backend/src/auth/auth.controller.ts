@@ -21,7 +21,8 @@ export class AuthController {
 
   @Get('me')
   @UseGuards(JwtAuthGuard)
-  getProfile(@CurrentUser() user: { id: string; email: string }) {
+  async getProfile(@CurrentUser() currentUser: { id: string; email: string }) {
+    const user = await this.authService.getMe(currentUser.id);
     return user;
   }
 }

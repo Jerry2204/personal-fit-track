@@ -5,6 +5,7 @@ export interface User {
   id: string
   email: string
   name?: string
+  avatarUrl?: string | null
   createdAt: string
   updatedAt: string
 }
@@ -18,6 +19,7 @@ interface AuthState {
   register: (email: string, password: string) => Promise<void>
   logout: () => void
   checkAuth: () => Promise<void>
+  updateUser: (updates: Partial<User>) => void
 }
 
 function getStoredToken(): string | null {
@@ -76,5 +78,11 @@ export const useAuthStore = create<AuthState>((set) => ({
       setStoredToken(null)
       set({ token: null, user: null, isAuthenticated: false, isLoading: false })
     }
+  },
+
+  updateUser: (updates: Partial<User>) => {
+    set((state) => ({
+      user: state.user ? { ...state.user, ...updates } : null,
+    }))
   },
 }))

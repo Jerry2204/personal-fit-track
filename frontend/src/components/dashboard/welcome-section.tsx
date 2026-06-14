@@ -1,6 +1,6 @@
 "use client"
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Flame } from "lucide-react"
 import type { TodaySummary, OverallStats } from "./dashboard-types"
@@ -10,6 +10,7 @@ interface Props {
   overallStats: OverallStats
   profileName: string | null
   userEmail: string
+  avatarUrl?: string | null
 }
 
 function getGreeting() {
@@ -28,7 +29,7 @@ function formatDate() {
   })
 }
 
-export function WelcomeSection({ todaySummary, overallStats, profileName, userEmail }: Props) {
+export function WelcomeSection({ todaySummary, overallStats, profileName, userEmail, avatarUrl }: Props) {
   const greeting = getGreeting()
   const date = formatDate()
   const name = profileName || userEmail.split("@")[0] || "Athlete"
@@ -38,12 +39,13 @@ export function WelcomeSection({ todaySummary, overallStats, profileName, userEm
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
           <Avatar className="h-11 w-11 border-2 border-border/40 shadow-md">
-            <AvatarFallback className="bg-card text-sm font-bold text-foreground">
+            <AvatarImage src={avatarUrl || undefined} alt={name} />
+            <AvatarFallback className="bg-card text-sm font-bold tracking-tight text-primary-foreground">
               {name.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div>
-            <h1 className="text-xl font-bold tracking-tight text-primary-foreground sm:text-2xl">
+            <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
               {greeting}, {name}
             </h1>
             <p className="text-sm text-Secondary">{date}</p>
