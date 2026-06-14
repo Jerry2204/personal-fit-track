@@ -6,6 +6,7 @@ import { useAuthStore } from "@/lib/auth-store"
 import { Sidebar } from "@/components/dashboard/sidebar"
 import { SidebarProvider } from "@/components/dashboard/sidebar-provider"
 import { DashboardShell } from "@/components/dashboard/dashboard-shell"
+import { CommandPalette } from "@/components/dashboard/command-palette"
 
 export default function DashboardLayout({
   children,
@@ -43,6 +44,7 @@ export default function DashboardLayout({
         <Sidebar />
         <DashboardShell>{children}</DashboardShell>
       </div>
+      <CommandPalette />
     </SidebarProvider>
   )
 }

@@ -646,4 +646,27 @@ All charts: responsive (ResponsiveContainer), styled tooltips, empty states, the
 - Frontend `next build` — compiles cleanly, 24 routes
 - Backend `nest build` — clean
 
+## Phase: Sidebar Navigation Groups
+
+### Completed (Date: 2026-06-15)
+
+**Refactored sidebar navigation** (`frontend/src/components/dashboard/sidebar.tsx`)
+
+- Replaced flat `navItems` array with grouped `navGroups` structure containing 6 logical sections:
+  - **Overview** — Dashboard
+  - **Training** — Exercises, Workouts, Plans, Running
+  - **Progress** — Body Progress, Goals, Habits, Calendar
+  - **Analytics** — Reports, Records, Progressive Overload, Achievements
+  - **Equipment** — Shoes
+  - **System** — Settings, Help Center
+- Added section headers with uppercase tracking, semantic color, and hover states
+- Added collapsible groups via `useState<Set<string>>` — click section header to toggle group visibility, chevron icon rotates on collapse
+- Active section headers highlighted when any child link matches current route
+- Collapsed sidebar mode (`md:w-16`) hides section headers but shows all items (group collapse ignored)
+- Mobile bottom nav unchanged (still shows Dashboard, Workouts, Plans, Running, Shoes)
+- Added `ChevronDown` icon import for collapse indicators
+
+**Build Verification**
+- Frontend `next build` — compiles cleanly, all 26 routes resolved
+
 ### Next Steps
