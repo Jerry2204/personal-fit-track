@@ -29,26 +29,26 @@ export function WelcomeSection() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
-          <Avatar className="h-10 w-10 border-2 border-primary/10">
-            <AvatarFallback className="bg-primary/5 text-sm font-semibold text-primary">
+          <Avatar className="h-11 w-11 border-2 border-border/40 shadow-md">
+            <AvatarFallback className="bg-card text-sm font-bold text-foreground">
               {currentUser.initials}
             </AvatarFallback>
           </Avatar>
           <div>
-            <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+            <h1 className="text-xl font-bold tracking-tight text-primary-foreground sm:text-2xl">
               {greeting}, {currentUser.name.split(" ")[0]}
             </h1>
-            <p className="text-sm text-muted-foreground">{date}</p>
+            <p className="text-sm text-Secondary">{date}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Badge
-            variant="success"
-            className="gap-1.5 px-3 py-1 text-sm font-medium"
-          >
-            <Flame className="h-3.5 w-3.5" />
-            {todaySummary.streakDays} day streak
-          </Badge>
+          <div className="inline-flex items-center gap-2 rounded-2xl border border-border/40 bg-card px-5 py-3 shadow-lg">
+            <Flame className="h-5 w-5 text-primary" />
+            <div>
+              <p className="text-sm font-extrabold text-foreground">{todaySummary.streakDays} day streak</p>
+              <p className="text-[10px] font-medium text-muted-foreground leading-tight">Keep it going!</p>
+            </div>
+          </div>
         </div>
       </div>
 

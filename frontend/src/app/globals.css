@@ -28,49 +28,51 @@
   --font-heading: var(--font-heading);
 }
 
+/* Light theme — warm cream background with teal/sage accents */
 :root {
-  --background: 38 100% 94%;
-  --foreground: 167 31% 15%;
-  --card: 0 0% 100%;
-  --card-foreground: 167 31% 15%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 167 31% 15%;
-  --primary: 166 33% 39%;
-  --primary-foreground: 38 100% 94%;
-  --secondary: 155 49% 85%;
-  --secondary-foreground: 167 31% 15%;
-  --muted: 155 49% 85%;
-  --muted-foreground: 166 33% 39%;
-  --accent: 166 33% 39%;
-  --accent-foreground: 38 100% 94%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 155 49% 69%;
-  --input: 155 49% 69%;
-  --ring: 166 33% 39%;
-  --radius: 0.75rem;
+  --background: 38 100% 94%;       /* warm cream — page background */
+  --foreground: 167 31% 15%;       /* dark teal — primary text */
+  --card: 0 0% 100%;               /* white — card surface */
+  --card-foreground: 167 31% 15%;  /* dark teal — card text */
+  --popover: 0 0% 100%;            /* white — popover surface */
+  --popover-foreground: 167 31% 15%; /* dark teal — popover text */
+  --primary: 166 33% 39%;          /* muted teal — primary actions/links */
+  --primary-foreground: 38 100% 94%; /* cream — text on primary */
+  --secondary: 155 49% 85%;        /* light sage — secondary surfaces */
+  --secondary-foreground: 167 31% 15%; /* dark teal — text on secondary */
+  --muted: 155 49% 85%;            /* light sage — muted backgrounds */
+  --muted-foreground: 166 33% 39%; /* muted teal — subdued text */
+  --accent: 166 33% 39%;          /* muted teal — accent elements */
+  --accent-foreground: 38 100% 94%; /* cream — text on accent */
+  --destructive: 0 84.2% 60.2%;    /* red — destructive actions */
+  --destructive-foreground: 0 0% 98%; /* near-white — text on destructive */
+  --border: 155 49% 69%;           /* sage — borders/dividers */
+  --input: 155 49% 69%;            /* sage — input borders */
+  --ring: 166 33% 39%;             /* muted teal — focus ring */
+  --radius: 0.75rem;               /* base border radius */
 }
 
+/* Dark theme — inverted to dark teal background with sage green accents */
 .dark {
-  --background: 167 31% 15%;
-  --foreground: 38 100% 94%;
-  --card: 167 20% 20%;
-  --card-foreground: 38 100% 94%;
-  --popover: 167 20% 20%;
-  --popover-foreground: 38 100% 94%;
-  --primary: 155 49% 69%;
-  --primary-foreground: 167 31% 15%;
-  --secondary: 167 25% 25%;
-  --secondary-foreground: 38 100% 94%;
-  --muted: 167 25% 25%;
-  --muted-foreground: 155 49% 69%;
-  --accent: 155 49% 69%;
-  --accent-foreground: 167 31% 15%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 166 33% 39%;
-  --input: 166 33% 39%;
-  --ring: 155 49% 69%;
+  --background: 167 31% 15%;       /* dark teal — page background */
+  --foreground: 38 100% 94%;       /* warm cream — primary text */
+  --card: 167 20% 20%;             /* slightly lighter teal — card surface */
+  --card-foreground: 38 100% 94%;  /* cream — card text */
+  --popover: 167 20% 20%;          /* lighter teal — popover surface */
+  --popover-foreground: 38 100% 94%; /* cream — popover text */
+  --primary: 155 49% 69%;          /* sage green — primary actions/links */
+  --primary-foreground: 167 31% 15%; /* dark teal — text on primary */
+  --secondary: 167 25% 25%;        /* muted teal — secondary surfaces */
+  --secondary-foreground: 38 100% 94%; /* cream — text on secondary */
+  --muted: 167 25% 25%;            /* muted teal — muted backgrounds */
+  --muted-foreground: 155 49% 69%; /* sage green — subdued text */
+  --accent: 155 49% 69%;          /* sage green — accent elements */
+  --accent-foreground: 167 31% 15%; /* dark teal — text on accent */
+  --destructive: 0 62.8% 30.6%;    /* dark red — destructive actions */
+  --destructive-foreground: 0 0% 98%; /* near-white — text on destructive */
+  --border: 166 33% 39%;           /* muted teal — borders/dividers */
+  --input: 166 33% 39%;            /* muted teal — input borders */
+  --ring: 155 49% 69%;             /* sage green — focus ring */
 }
 
 * {
