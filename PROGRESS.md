@@ -182,6 +182,38 @@
 - Frontend `next build` — 16 routes, all clean
 - Backend `tsc --noEmit` — clean
 
+## Phase: Personal Records
+
+### Completed (Date: 2026-06-14)
+
+**Backend — PersonalRecordsModule**
+- `personal-records.module.ts`, `personal-records.controller.ts`, `personal-records.service.ts`
+- `PersonalRecordsService.findAll()` computes 5 records by querying existing workout and run data:
+  - **Strongest lift**: highest `weightKg × reps` set across all workouts; returns exercise name, muscle group, date
+  - **Longest run**: highest `distanceKm` run; returns duration, type, date
+  - **Fastest run**: lowest `averagePace` (runs ≥ 1km); returns pace mm:ss/km, distance, type, date
+  - **Highest workout volume**: highest total `∑(weightKg × reps)` across all sets in a single workout; returns workout type, date
+  - **Highest weekly mileage**: highest total `distanceKm` in a Sunday–Saturday week; returns week start, run count
+- All records return `null` if no qualifying data exists
+- JWT auth guard applied
+- `GET /personal-records` returns `{ strongestLift, longestRun, fastestRun, highestVolume, highestWeeklyMileage }`
+
+**Frontend — Records Page (`/records`)**
+- Achievement-style card grid with trophy icon, gradient backgrounds, per-type accent colors
+- Value display (e.g. `80kg × 12`, `21.1km`, `4:30 /km`, `12,450kg`, `62.5km`)
+- Context subtitle (exercise + muscle group, duration + run type, etc.)
+- Category filter tabs: All, Lifting, Running, Volume, Mileage — each with icon and active styling
+- Loading skeleton (3 placeholder cards), empty state (no records), error state
+- Responsive grid: 1 col mobile, 2 col tablet, 3 col desktop
+
+**Integration**
+- Sidebar nav updated with `/records` (Trophy icon, between Goals and Habits)
+- Topbar page title mapping added for `/records` → "Records"
+
+**Build Verification**
+- Frontend `next build` — 17 routes, all clean
+- Backend `tsc --noEmit` — clean
+
 ### Next Steps
 
 1. Implement **ProfileModule** (backend) + Settings page (frontend)

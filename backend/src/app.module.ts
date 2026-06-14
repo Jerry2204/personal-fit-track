@@ -11,9 +11,10 @@ import { BodyProgressModule } from './body-progress/body-progress.module';
 import { GoalsModule } from './goals/goals.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { HabitLogsModule } from './habit-logs/habit-logs.module';
+import { PersonalRecordsModule } from './personal-records/personal-records.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule],
+  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule, PersonalRecordsModule],
   controllers: [AppController],
   providers: [AppService],
 })
