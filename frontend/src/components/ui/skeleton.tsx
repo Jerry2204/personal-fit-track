@@ -7,7 +7,7 @@ function Skeleton({
   return (
     <div
       data-slot="skeleton"
-      className={cn("animate-pulse rounded-xl bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 bg-[length:400%_100%] motion-safe:animate-shimmer", className)}
+      className={cn("animate-pulse rounded-xl bg-gradient-to-r from-muted via-muted/50 to-muted bg-[length:400%_100%] motion-safe:animate-shimmer", className)}
       {...props}
     />
   )

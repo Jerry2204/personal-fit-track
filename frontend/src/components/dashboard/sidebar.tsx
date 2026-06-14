@@ -177,7 +177,7 @@ export function Sidebar() {
       </aside>
 
       {/* Mobile bottom nav */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 border-t bg-background md:hidden pb-safe">
+      <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-background/95 backdrop-blur-sm md:hidden pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_16px_rgba(0,0,0,0.05)]">
         <div className="flex items-center justify-around py-2 px-2">
           {navItems.slice(0, 5).map((item) => {
             const isActive = pathname === item.href
@@ -186,7 +186,7 @@ export function Sidebar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 p-2 rounded-xl text-[10px] font-medium transition-all duration-300",
+                  "flex flex-col items-center gap-1 p-2 rounded-xl text-[10px] font-medium transition-all duration-300",
                   isActive
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground",

@@ -227,7 +227,7 @@ export default function ShoesPage() {
                   {hasWarning && !isCritical && (
                     <Badge
                       variant="secondary"
-                      className="text-[10px] px-1.5 py-0 bg-amber-500/10 text-amber-600 border-amber-500/20"
+                      className="text-[10px] px-1.5 py-0 bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400 dark:border-amber-500/30"
                     >
                       WARNING
                     </Badge>

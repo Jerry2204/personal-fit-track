@@ -72,18 +72,18 @@ const typeLabels: Record<string, string> = {
 const statusOptions = ["All", "Active", "Completed", "Failed"] as const
 
 const statusColors: Record<string, string> = {
-  Active: "bg-primary/10 text-primary border-primary/20",
-  Completed: "bg-green-500/10 text-green-600 border-green-500/20",
-  Failed: "bg-destructive/10 text-destructive border-destructive/20",
+  Active: "bg-primary/10 text-primary border-primary/20 dark:border-primary/30",
+  Completed: "bg-green-500/10 text-green-600 border-green-500/20 dark:text-green-400 dark:border-green-500/30",
+  Failed: "bg-destructive/10 text-destructive border-destructive/20 dark:border-destructive/30",
 }
 
 const typeColors: Record<string, string> = {
-  RunDistance: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-  WorkoutSessions: "bg-purple-500/10 text-purple-600 border-purple-500/20",
-  BodyWeight: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-  Strength: "bg-rose-500/10 text-rose-600 border-rose-500/20",
-  RunningPace: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20",
-  Nutrition: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+  RunDistance: "bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400 dark:border-blue-500/30",
+  WorkoutSessions: "bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400 dark:border-purple-500/30",
+  BodyWeight: "bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400 dark:border-amber-500/30",
+  Strength: "bg-rose-500/10 text-rose-600 border-rose-500/20 dark:text-rose-400 dark:border-rose-500/30",
+  RunningPace: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20 dark:text-cyan-400 dark:border-cyan-500/30",
+  Nutrition: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400 dark:border-emerald-500/30",
   Other: "bg-muted text-muted-foreground border-border/50",
 }
 
@@ -324,7 +324,7 @@ export default function GoalsPage() {
                       <>
                         <button
                           onClick={() => completeMutation.mutate(goal.id)}
-                          className="flex size-8 items-center justify-center rounded-lg text-green-600 hover:bg-green-500/10"
+                          className="flex size-8 items-center justify-center rounded-lg text-green-600 dark:text-green-400 hover:bg-green-500/10"
                           title="Mark complete"
                         >
                           <CheckCircle2 className="h-4 w-4" />

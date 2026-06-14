@@ -175,7 +175,7 @@ export default function ShoeDetailPage() {
             {isWarning && !isCritical && (
               <Badge
                 variant="secondary"
-                className="bg-amber-500/10 text-amber-600 border-amber-500/20"
+                className="bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400 dark:border-amber-500/30"
               >
                 WARNING
               </Badge>
@@ -245,7 +245,7 @@ export default function ShoeDetailPage() {
             />
           </div>
           {shoe.maxMileageKm && (
-            <p className={`mt-1.5 text-xs ${isCritical ? "text-destructive" : isWarning ? "text-amber-500" : "text-muted-foreground"}`}>
+            <p className={`mt-1.5 text-xs ${isCritical ? "text-destructive" : isWarning ? "text-amber-500 dark:text-amber-400" : "text-muted-foreground"}`}>
               {isCritical
                 ? "Exceeded recommended mileage — consider retiring these shoes"
                 : isWarning

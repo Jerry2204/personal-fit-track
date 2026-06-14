@@ -116,7 +116,7 @@ function DetailSheet({
             <div className="flex items-center justify-between rounded-lg border bg-card p-3">
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                  <Droplets className="h-4 w-4 text-blue-500" />
+                  <Droplets className="h-4 w-4 text-blue-500 dark:text-blue-400" />
                 </div>
                 <span className="text-sm text-card-foreground">Water</span>
               </div>
@@ -130,7 +130,7 @@ function DetailSheet({
             <div className="flex items-center justify-between rounded-lg border bg-card p-3">
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-                  <Moon className="h-4 w-4 text-indigo-500" />
+                  <Moon className="h-4 w-4 text-indigo-500 dark:text-indigo-400" />
                 </div>
                 <span className="text-sm text-card-foreground">Sleep</span>
               </div>
@@ -158,7 +158,7 @@ function DetailSheet({
             <div className="flex items-center justify-between rounded-lg border bg-card p-3">
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
-                  <Zap className="h-4 w-4 text-orange-500" />
+                  <Zap className="h-4 w-4 text-orange-500 dark:text-orange-400" />
                 </div>
                 <span className="text-sm text-card-foreground">Calories</span>
               </div>
@@ -172,7 +172,7 @@ function DetailSheet({
             <div className="flex items-center justify-between rounded-lg border bg-card p-3">
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-rose-500/10 flex items-center justify-center">
-                  <Drumstick className="h-4 w-4 text-rose-500" />
+                  <Drumstick className="h-4 w-4 text-rose-500 dark:text-rose-400" />
                 </div>
                 <span className="text-sm text-card-foreground">Protein</span>
               </div>
@@ -186,7 +186,7 @@ function DetailSheet({
             <div className="flex items-center justify-between rounded-lg border bg-card p-3">
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                  <Apple className="h-4 w-4 text-emerald-500" />
+                  <Apple className="h-4 w-4 text-emerald-500 dark:text-emerald-400" />
                 </div>
                 <span className="text-sm text-card-foreground">Weight</span>
               </div>
@@ -214,7 +214,7 @@ function DetailSheet({
             <div className="flex items-center justify-between rounded-lg border bg-card p-3">
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                  <Heart className="h-4 w-4 text-amber-500" />
+                  <Heart className="h-4 w-4 text-amber-500 dark:text-amber-400" />
                 </div>
                 <span className="text-sm text-card-foreground">Energy</span>
               </div>
@@ -371,13 +371,13 @@ export default function HabitsPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
             {todayEntry.waterIntakeMl != null && (
               <div className="flex items-center gap-2 text-sm">
-                <Droplets className="h-4 w-4 text-blue-500 shrink-0" />
+                <Droplets className="h-4 w-4 text-blue-500 dark:text-blue-400 shrink-0" />
                 <span className="text-card-foreground">{(todayEntry.waterIntakeMl / 1000).toFixed(1)}L</span>
               </div>
             )}
             {todayEntry.sleepHours != null && (
               <div className="flex items-center gap-2 text-sm">
-                <Moon className="h-4 w-4 text-indigo-500 shrink-0" />
+                <Moon className="h-4 w-4 text-indigo-500 dark:text-indigo-400 shrink-0" />
                 <span className="text-card-foreground">{todayEntry.sleepHours}h</span>
               </div>
             )}
@@ -389,25 +389,25 @@ export default function HabitsPage() {
             )}
             {todayEntry.caloriesIntake != null && (
               <div className="flex items-center gap-2 text-sm">
-                <Zap className="h-4 w-4 text-orange-500 shrink-0" />
+                <Zap className="h-4 w-4 text-orange-500 dark:text-orange-400 shrink-0" />
                 <span className="text-card-foreground">{todayEntry.caloriesIntake}</span>
               </div>
             )}
             {todayEntry.proteinG != null && (
               <div className="flex items-center gap-2 text-sm">
-                <Drumstick className="h-4 w-4 text-rose-500 shrink-0" />
+                <Drumstick className="h-4 w-4 text-rose-500 dark:text-rose-400 shrink-0" />
                 <span className="text-card-foreground">{todayEntry.proteinG}g</span>
               </div>
             )}
             {todayEntry.mood && (
               <div className="flex items-center gap-2 text-sm">
-                <Brain className="h-4 w-4 text-purple-500 shrink-0" />
+                <Brain className="h-4 w-4 text-purple-500 dark:text-purple-400 shrink-0" />
                 <span className="text-card-foreground capitalize">{todayEntry.mood}</span>
               </div>
             )}
             {todayEntry.energyLevel != null && (
               <div className="flex items-center gap-2 text-sm">
-                <Heart className="h-4 w-4 text-amber-500 shrink-0" />
+                <Heart className="h-4 w-4 text-amber-500 dark:text-amber-400 shrink-0" />
                 <span className="text-card-foreground">{todayEntry.energyLevel}/10</span>
               </div>
             )}
@@ -428,7 +428,7 @@ export default function HabitsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground flex items-center gap-1">
-                <Droplets className="h-3 w-3 text-blue-500" /> Water (ml)
+                <Droplets className="h-3 w-3 text-blue-500 dark:text-blue-400" /> Water (ml)
               </label>
               <Input
                 type="number"
@@ -440,7 +440,7 @@ export default function HabitsPage() {
 
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground flex items-center gap-1">
-                <Moon className="h-3 w-3 text-indigo-500" /> Sleep (hours)
+                <Moon className="h-3 w-3 text-indigo-500 dark:text-indigo-400" /> Sleep (hours)
               </label>
               <Input
                 type="number"
@@ -465,7 +465,7 @@ export default function HabitsPage() {
 
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground flex items-center gap-1">
-                <Zap className="h-3 w-3 text-orange-500" /> Calories
+                <Zap className="h-3 w-3 text-orange-500 dark:text-orange-400" /> Calories
               </label>
               <Input
                 type="number"
@@ -477,7 +477,7 @@ export default function HabitsPage() {
 
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground flex items-center gap-1">
-                <Drumstick className="h-3 w-3 text-rose-500" /> Protein (g)
+                <Drumstick className="h-3 w-3 text-rose-500 dark:text-rose-400" /> Protein (g)
               </label>
               <Input
                 type="number"
@@ -490,7 +490,7 @@ export default function HabitsPage() {
 
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground flex items-center gap-1">
-                <Apple className="h-3 w-3 text-emerald-500" /> Weight (kg)
+                <Apple className="h-3 w-3 text-emerald-500 dark:text-emerald-400" /> Weight (kg)
               </label>
               <Input
                 type="number"
@@ -503,7 +503,7 @@ export default function HabitsPage() {
 
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground flex items-center gap-1">
-                <Brain className="h-3 w-3 text-purple-500" /> Mood
+                <Brain className="h-3 w-3 text-purple-500 dark:text-purple-400" /> Mood
               </label>
               <Select
                 value={form.mood}
@@ -527,7 +527,7 @@ export default function HabitsPage() {
 
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground flex items-center gap-1">
-                <Heart className="h-3 w-3 text-amber-500" /> Energy (1-10)
+                <Heart className="h-3 w-3 text-amber-500 dark:text-amber-400" /> Energy (1-10)
               </label>
               <Input
                 type="number"
@@ -592,13 +592,13 @@ export default function HabitsPage() {
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   {entry.waterIntakeMl != null && (
                     <span className="text-xs flex items-center gap-1 text-card-foreground">
-                      <Droplets className="h-3 w-3 text-blue-500" />
+                      <Droplets className="h-3 w-3 text-blue-500 dark:text-blue-400" />
                       {(entry.waterIntakeMl / 1000).toFixed(1)}L
                     </span>
                   )}
                   {entry.sleepHours != null && (
                     <span className="text-xs flex items-center gap-1 text-card-foreground">
-                      <Moon className="h-3 w-3 text-indigo-500" />
+                      <Moon className="h-3 w-3 text-indigo-500 dark:text-indigo-400" />
                       {entry.sleepHours}h
                     </span>
                   )}
@@ -610,13 +610,13 @@ export default function HabitsPage() {
                   )}
                   {entry.caloriesIntake != null && (
                     <span className="text-xs flex items-center gap-1 text-card-foreground">
-                      <Zap className="h-3 w-3 text-orange-500" />
+                      <Zap className="h-3 w-3 text-orange-500 dark:text-orange-400" />
                       {entry.caloriesIntake}
                     </span>
                   )}
                   {entry.proteinG != null && (
                     <span className="text-xs flex items-center gap-1 text-card-foreground">
-                      <Drumstick className="h-3 w-3 text-rose-500" />
+                      <Drumstick className="h-3 w-3 text-rose-500 dark:text-rose-400" />
                       {entry.proteinG}g
                     </span>
                   )}

@@ -28,60 +28,60 @@
   --font-heading: var(--font-heading);
 }
 
-/* Light theme — warm cream background with teal/sage accents */
+/* Light theme — crisp white background with deep emerald accents */
 :root {
-  --background: 38 100% 94%;       /* warm cream — page background */
-  --foreground: 167 31% 15%;       /* dark teal — primary text */
+  --background: 0 0% 98%;          /* zinc-50 — page background */
+  --foreground: 240 10% 3.9%;      /* zinc-950 — primary text */
   --card: 0 0% 100%;               /* white — card surface */
-  --card-foreground: 167 31% 15%;  /* dark teal — card text */
+  --card-foreground: 240 10% 3.9%; /* zinc-950 — card text */
   --popover: 0 0% 100%;            /* white — popover surface */
-  --popover-foreground: 167 31% 15%; /* dark teal — popover text */
-  --primary: 166 33% 39%;          /* muted teal — primary actions/links */
-  --primary-foreground: 38 100% 94%; /* cream — text on primary */
-  --secondary: 155 49% 85%;        /* light sage — secondary surfaces */
-  --secondary-foreground: 167 31% 15%; /* dark teal — text on secondary */
-  --muted: 155 49% 85%;            /* light sage — muted backgrounds */
-  --muted-foreground: 166 33% 39%; /* muted teal — subdued text */
-  --accent: 166 33% 39%;          /* muted teal — accent elements */
-  --accent-foreground: 38 100% 94%; /* cream — text on accent */
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 160 84% 39%;          /* deep emerald — primary actions/links */
+  --primary-foreground: 0 0% 98%;  /* near white — text on primary */
+  --secondary: 240 4.8% 95.9%;     /* zinc-100 — secondary surfaces */
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;         /* zinc-100 — muted backgrounds */
+  --muted-foreground: 240 3.8% 46.1%; /* zinc-500 — subdued text */
+  --accent: 240 4.8% 95.9%;        /* zinc-100 — accent elements */
+  --accent-foreground: 240 5.9% 10%;
   --destructive: 0 84.2% 60.2%;    /* red — destructive actions */
-  --destructive-foreground: 0 0% 98%; /* near-white — text on destructive */
-  --border: 155 49% 69%;           /* sage — borders/dividers */
-  --input: 155 49% 69%;            /* sage — input borders */
-  --ring: 166 33% 39%;             /* muted teal — focus ring */
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;          /* zinc-200 — borders/dividers */
+  --input: 240 5.9% 90%;           /* zinc-200 — input borders */
+  --ring: 160 84% 39%;             /* deep emerald — focus ring */
   --radius: 0.75rem;               /* base border radius */
 }
 
-/* Dark theme — inverted to dark teal background with sage green accents */
+/* Dark theme — midnight slate with electric cyan accents */
 .dark {
-  --background: 167 31% 15%;       /* dark teal — page background */
-  --foreground: 38 100% 94%;       /* warm cream — primary text */
-  --card: 167 20% 20%;             /* slightly lighter teal — card surface */
-  --card-foreground: 38 100% 94%;  /* cream — card text */
-  --popover: 167 20% 20%;          /* lighter teal — popover surface */
-  --popover-foreground: 38 100% 94%; /* cream — popover text */
-  --primary: 155 49% 69%;          /* sage green — primary actions/links */
-  --primary-foreground: 167 31% 15%; /* dark teal — text on primary */
-  --secondary: 167 25% 25%;        /* muted teal — secondary surfaces */
-  --secondary-foreground: 38 100% 94%; /* cream — text on secondary */
-  --muted: 167 25% 25%;            /* muted teal — muted backgrounds */
-  --muted-foreground: 155 49% 69%; /* sage green — subdued text */
-  --accent: 155 49% 69%;          /* sage green — accent elements */
-  --accent-foreground: 167 31% 15%; /* dark teal — text on accent */
-  --destructive: 0 62.8% 30.6%;    /* dark red — destructive actions */
-  --destructive-foreground: 0 0% 98%; /* near-white — text on destructive */
-  --border: 166 33% 39%;           /* muted teal — borders/dividers */
-  --input: 166 33% 39%;            /* muted teal — input borders */
-  --ring: 155 49% 69%;             /* sage green — focus ring */
+  --background: 240 10% 3.9%;      /* zinc-950 — page background */
+  --foreground: 0 0% 98%;          /* zinc-50 — primary text */
+  --card: 240 5.9% 10%;            /* zinc-900 — card surface */
+  --card-foreground: 0 0% 98%;     /* zinc-50 — card text */
+  --popover: 240 5.9% 10%;         /* zinc-900 — popover surface */
+  --popover-foreground: 0 0% 98%;
+  --primary: 175 100% 38%;         /* electric cyan — primary actions/links */
+  --primary-foreground: 240 10% 3.9%; /* black text on cyan */
+  --secondary: 240 3.7% 15.9%;     /* zinc-800 — secondary surfaces */
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;         /* zinc-800 — muted backgrounds */
+  --muted-foreground: 240 5% 64.9%;   /* zinc-400 — subdued text */
+  --accent: 240 3.7% 15.9%;        /* zinc-800 — accent elements */
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84.2% 60.2%;    /* bright red — destructive actions */
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;        /* zinc-800 — borders/dividers */
+  --input: 240 3.7% 15.9%;         /* zinc-800 — input borders */
+  --ring: 175 100% 38%;            /* electric cyan — focus ring */
 }
 
 * {
-  border-color: var(--border);
+  border-color: var(--color-border);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 

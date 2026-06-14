@@ -62,19 +62,19 @@ const categoryLabels: Record<string, string> = {
 }
 
 const categoryColors: Record<string, string> = {
-  streak: "from-orange-500/20 to-amber-500/10 border-orange-500/20",
-  workout: "from-blue-500/20 to-indigo-500/10 border-blue-500/20",
-  running: "from-emerald-500/20 to-green-500/10 border-emerald-500/20",
-  consistency: "from-purple-500/20 to-violet-500/10 border-purple-500/20",
-  goals: "from-rose-500/20 to-pink-500/10 border-rose-500/20",
+  streak: "from-orange-500/20 to-amber-500/10 border-orange-500/20 dark:border-orange-500/30",
+  workout: "from-blue-500/20 to-indigo-500/10 border-blue-500/20 dark:border-blue-500/30",
+  running: "from-emerald-500/20 to-green-500/10 border-emerald-500/20 dark:border-emerald-500/30",
+  consistency: "from-purple-500/20 to-violet-500/10 border-purple-500/20 dark:border-purple-500/30",
+  goals: "from-rose-500/20 to-pink-500/10 border-rose-500/20 dark:border-rose-500/30",
 }
 
 const categoryAccent: Record<string, string> = {
-  streak: "text-orange-500",
-  workout: "text-blue-500",
-  running: "text-emerald-500",
-  consistency: "text-purple-500",
-  goals: "text-rose-500",
+  streak: "text-orange-600 dark:text-orange-400",
+  workout: "text-blue-600 dark:text-blue-400",
+  running: "text-emerald-600 dark:text-emerald-400",
+  consistency: "text-purple-600 dark:text-purple-400",
+  goals: "text-rose-600 dark:text-rose-400",
 }
 
 const iconMap: Record<string, typeof Flame> = {
@@ -87,10 +87,10 @@ const iconMap: Record<string, typeof Flame> = {
 
 const rankColors: Record<string, string> = {
   Beginner: "bg-muted text-muted-foreground",
-  Rookie: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-  Intermediate: "bg-purple-500/10 text-purple-600 border-purple-500/20",
-  Veteran: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-  Elite: "bg-rose-500/10 text-rose-600 border-rose-500/20",
+  Rookie: "bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400 dark:border-blue-500/30",
+  Intermediate: "bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400 dark:border-purple-500/30",
+  Veteran: "bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400 dark:border-amber-500/30",
+  Elite: "bg-rose-500/10 text-rose-600 border-rose-500/20 dark:text-rose-400 dark:border-rose-500/30",
 }
 
 const tabs = ["all", "streak", "workout", "running", "consistency", "goals"] as const

@@ -34,7 +34,7 @@ export function Topbar() {
   const pageTitle = pageTitles[pathname] || "Dashboard"
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-border/40 bg-background/80 backdrop-blur-md px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-border bg-background/90 backdrop-blur-md px-4 sm:px-6 lg:px-8 shadow-sm">
       <div className="flex items-center gap-3">
         <Button
           variant="ghost"

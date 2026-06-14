@@ -188,7 +188,7 @@ function MonthlyView({ year, month }: { year: number; month: number }) {
           {data.personalRecords.length > 0 && data.personalRecords.map((pr, i) => (
             <div key={i} className="rounded-xl border border-border/40 bg-muted/30 p-4">
               <p className="text-xs text-muted-foreground mb-1">Personal Record</p>
-              <p className="text-lg font-bold text-card-foreground flex items-center gap-1"><Trophy className="h-4 w-4 text-amber-500" />{pr.value}</p>
+              <p className="text-lg font-bold text-card-foreground flex items-center gap-1"><Trophy className="h-4 w-4 text-amber-500 dark:text-amber-400" />{pr.value}</p>
               <p className="text-xs text-muted-foreground">{pr.label}{pr.date ? ` · ${new Date(pr.date).toLocaleDateString()}` : ""}</p>
             </div>
           ))}
@@ -316,14 +316,14 @@ function YearlyView({ year }: { year: number }) {
         {/* Achievements */}
         <div className="rounded-2xl border border-border/40 bg-card p-5 shadow-lg">
           <h3 className="mb-4 text-sm font-semibold text-card-foreground flex items-center gap-1">
-            <Medal className="h-4 w-4 text-amber-500" /> Best Achievements
+            <Medal className="h-4 w-4 text-amber-500 dark:text-amber-400" /> Best Achievements
           </h3>
           {data.achievements.length > 0 ? (
             <div className="space-y-3">
               {data.achievements.map((a, i) => (
                 <div key={i} className="flex items-center gap-3 rounded-xl border border-border/40 bg-muted/30 p-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/10">
-                    <Trophy className="h-4 w-4 text-amber-500" />
+                    <Trophy className="h-4 w-4 text-amber-500 dark:text-amber-400" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-card-foreground">{a.label}</p>
@@ -346,7 +346,7 @@ function YearlyView({ year }: { year: number }) {
             {data.personalRecords.map((pr, i) => (
               <div key={i} className="rounded-xl border border-border/40 bg-muted/30 p-4">
                 <p className="text-xs text-muted-foreground mb-1">Personal Record</p>
-                <p className="text-lg font-bold text-card-foreground flex items-center gap-1"><Trophy className="h-4 w-4 text-amber-500" />{pr.value}</p>
+                <p className="text-lg font-bold text-card-foreground flex items-center gap-1"><Trophy className="h-4 w-4 text-amber-500 dark:text-amber-400" />{pr.value}</p>
                 <p className="text-xs text-muted-foreground">{pr.label}{pr.date ? ` · ${new Date(pr.date).toLocaleDateString()}` : ""}</p>
               </div>
             ))}
