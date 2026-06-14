@@ -1,17 +1,32 @@
 "use client"
 
-import { bodyProgress } from "./mock-data"
 import { Progress } from "@/components/ui/progress"
 import { TrendingDown } from "lucide-react"
+import type { BodyProgress } from "./dashboard-types"
 
-export function BodyProgressSummary() {
-  const weightLossPercent = Math.min(
-    ((bodyProgress.startWeight - bodyProgress.currentWeight) /
-      (bodyProgress.startWeight - bodyProgress.targetWeight)) *
-      100,
-    100,
-  )
-  const remainingKg = bodyProgress.currentWeight - bodyProgress.targetWeight
+interface Props {
+  bodyProgress: BodyProgress | null
+}
+
+export function BodyProgressSummary({ bodyProgress }: Props) {
+  if (!bodyProgress || bodyProgress.currentWeight === null) return null
+
+  const startWeight = bodyProgress.startWeight ?? bodyProgress.currentWeight
+  const targetWeight = bodyProgress.targetWeight
+  const weightChange = bodyProgress.currentWeight - startWeight
+
+  const weightLossPercent =
+    targetWeight !== null && startWeight !== targetWeight
+      ? Math.min(
+          ((startWeight - bodyProgress.currentWeight) /
+            (startWeight - targetWeight)) *
+            100,
+          100,
+        )
+      : 0
+
+  const remainingKg =
+    targetWeight !== null ? bodyProgress.currentWeight - targetWeight : 0
 
   return (
     <div className="rounded-2xl border border-border/40 bg-card text-card-foreground p-6 shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
@@ -27,7 +42,9 @@ export function BodyProgressSummary() {
             </span>
           </p>
           <p className="mt-0.5 text-xs text-muted-foreground">
-            Last measured {bodyProgress.lastMeasurement}
+            {bodyProgress.lastMeasurement
+              ? `Last measured ${bodyProgress.lastMeasurement}`
+              : "No recent measurements"}
           </p>
         </div>
         <div className="rounded-full bg-primary/10 p-3">
@@ -38,30 +55,41 @@ export function BodyProgressSummary() {
       <div className="mt-4 space-y-3">
         <div className="flex items-center justify-between text-sm">
           <span className="text-muted-foreground">Started at</span>
-          <span className="font-medium">{bodyProgress.startWeight} kg</span>
+          <span className="font-medium">{startWeight} kg</span>
         </div>
         <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Lost</span>
-          <span className="font-medium text-primary">
-            -{Math.abs(bodyProgress.weightChange)} kg
+          <span className="text-muted-foreground">
+            {weightChange < 0 ? "Lost" : "Gained"}
+          </span>
+          <span
+            className={`font-medium ${
+              weightChange <= 0 ? "text-primary" : "text-destructive"
+            }`}
+          >
+            {weightChange >= 0 ? "+" : ""}
+            {Math.abs(weightChange).toFixed(1)} kg
           </span>
         </div>
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Body fat</span>
-          <span className="font-medium">{bodyProgress.bodyFat}%</span>
-        </div>
-
-        <div className="pt-1">
-          <div className="mb-1.5 flex items-center justify-between text-xs">
-            <span className="text-muted-foreground">Goal progress</span>
-            <span className="font-medium">
-              {remainingKg > 0
-                ? `${remainingKg.toFixed(1)} kg to go`
-                : "Goal reached!"}
-            </span>
+        {bodyProgress.bodyFat !== null && (
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-muted-foreground">Body fat</span>
+            <span className="font-medium">{bodyProgress.bodyFat}%</span>
           </div>
-          <Progress value={weightLossPercent} className="h-2" />
-        </div>
+        )}
+
+        {targetWeight !== null && (
+          <div className="pt-1">
+            <div className="mb-1.5 flex items-center justify-between text-xs">
+              <span className="text-muted-foreground">Goal progress</span>
+              <span className="font-medium">
+                {remainingKg > 0
+                  ? `${remainingKg.toFixed(1)} kg to go`
+                  : "Goal reached!"}
+              </span>
+            </div>
+            <Progress value={Math.max(weightLossPercent, 0)} className="h-2" />
+          </div>
+        )}
       </div>
     </div>
   )

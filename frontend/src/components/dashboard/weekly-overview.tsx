@@ -1,10 +1,15 @@
 "use client"
 
-import { weeklyProgress, weeklyTargets } from "./mock-data"
 import { Progress } from "@/components/ui/progress"
 import { Dumbbell, Footprints } from "lucide-react"
+import type { WeeklyProgressDay, WeeklyTargets } from "./dashboard-types"
 
-export function WeeklyOverview() {
+interface Props {
+  weeklyProgress: WeeklyProgressDay[]
+  weeklyTargets: WeeklyTargets
+}
+
+export function WeeklyOverview({ weeklyProgress, weeklyTargets }: Props) {
   const sessionsPercent = Math.min(
     (weeklyTargets.sessionsCompleted / weeklyTargets.sessionsTarget) * 100,
     100,

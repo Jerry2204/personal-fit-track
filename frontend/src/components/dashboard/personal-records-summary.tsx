@@ -1,28 +1,26 @@
 "use client"
 
-import { personalRecords } from "./mock-data"
 import { cn } from "@/lib/utils"
 import { Trophy, Zap } from "lucide-react"
+import type { PersonalRecord } from "./dashboard-types"
 
-const typeColors = {
-  Strength:
-    "bg-secondary text-secondary-foreground border border-border/50",
-  Running:
-    "bg-primary/20 text-primary",
+interface Props {
+  personalRecords: PersonalRecord[]
 }
 
-const categoryConfig = {
-  strength: {
-    icon: Zap,
-    color: typeColors.Strength,
-  },
-  run: {
-    icon: Trophy,
-    color: typeColors.Running,
-  },
+const typeColors: Record<string, string> = {
+  Strength: "bg-secondary text-secondary-foreground border border-border/50",
+  Running: "bg-primary/20 text-primary",
 }
 
-export function PersonalRecordsSummary() {
+const categoryConfig: Record<string, { icon: React.ElementType; color: string }> = {
+  Strength: { icon: Zap, color: typeColors.Strength },
+  Running: { icon: Trophy, color: typeColors.Running },
+}
+
+export function PersonalRecordsSummary({ personalRecords }: Props) {
+  if (personalRecords.length === 0) return null
+
   return (
     <div className="rounded-2xl border border-border/40 bg-card text-card-foreground shadow-lg transition-all hover:shadow-xl hover:-translate-y-1 overflow-hidden group">
       <div className="border-b border-border/40 px-6 py-4">
@@ -30,7 +28,7 @@ export function PersonalRecordsSummary() {
       </div>
       <div className="divide-y divide-border/40">
         {personalRecords.map((pr) => {
-          const cfg = categoryConfig[pr.category]
+          const cfg = categoryConfig[pr.category] || categoryConfig.Strength
           const Icon = cfg.icon
           return (
             <div

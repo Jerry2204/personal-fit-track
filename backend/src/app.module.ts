@@ -12,9 +12,13 @@ import { GoalsModule } from './goals/goals.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { HabitLogsModule } from './habit-logs/habit-logs.module';
 import { PersonalRecordsModule } from './personal-records/personal-records.module';
+import { ShoesModule } from './shoes/shoes.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ReportsModule } from './reports/reports.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule, PersonalRecordsModule],
+  imports: [PrismaModule, AuthModule, UsersModule, ExercisesModule, WorkoutsModule, RunsModule, BodyProgressModule, GoalsModule, CalendarModule, HabitLogsModule, PersonalRecordsModule, ShoesModule, DashboardModule, ReportsModule, ProfileModule],
   controllers: [AppController],
   providers: [AppService],
 })

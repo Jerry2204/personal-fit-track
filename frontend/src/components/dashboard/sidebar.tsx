@@ -22,6 +22,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ListChecks,
+  SportShoe,
 } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -29,6 +30,7 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/workouts", label: "Workouts", icon: Dumbbell },
   { href: "/running", label: "Running", icon: Footprints },
+  { href: "/shoes", label: "Shoes", icon: SportShoe },
   { href: "/exercises", label: "Exercises", icon: BookOpen },
   { href: "/body-progress", label: "Body Progress", icon: Activity },
   { href: "/goals", label: "Goals", icon: Target },

@@ -1,25 +1,26 @@
 "use client"
 
-import { goals } from "./mock-data"
 import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
+import type { DashboardGoal } from "./dashboard-types"
 
-const typeColors = {
-  Distance:
-    "bg-primary/20 text-primary",
-  Strength:
-    "bg-secondary text-secondary-foreground border border-border/50",
-  Sessions:
-    "bg-muted text-muted-foreground border border-border/50",
+interface Props {
+  goals: DashboardGoal[]
 }
 
-const typeLabels = {
-  Distance: "Distance",
-  Strength: "Strength",
-  Sessions: "Sessions",
+const typeColors: Record<string, string> = {
+  Distance: "bg-primary/20 text-primary",
+  Sessions: "bg-secondary text-secondary-foreground border border-border/50",
+  Weight: "bg-muted text-muted-foreground border border-border/50",
+  Strength: "bg-secondary text-secondary-foreground border border-border/50",
+  Pace: "bg-primary/20 text-primary",
+  Nutrition: "bg-muted text-muted-foreground border border-border/50",
+  Other: "bg-muted text-muted-foreground border border-border/50",
 }
 
-export function GoalCard() {
+export function GoalCard({ goals }: Props) {
+  if (goals.length === 0) return null
+
   return (
     <div className="rounded-2xl border border-border/40 bg-card text-foreground shadow-lg transition-all hover:shadow-xl overflow-hidden">
       <div className="border-b border-border/40 px-5 py-4">
@@ -39,10 +40,10 @@ export function GoalCard() {
                     <span
                       className={cn(
                         "inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium",
-                        typeColors[goal.type],
+                        typeColors[goal.type] || typeColors.Other,
                       )}
                     >
-                      {typeLabels[goal.type]}
+                      {goal.type}
                     </span>
                     <span className="text-[11px] text-muted-foreground">
                       Due {goal.deadline}

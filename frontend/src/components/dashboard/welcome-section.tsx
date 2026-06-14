@@ -1,9 +1,16 @@
 "use client"
 
-import { currentUser, todaySummary, overallStats } from "./mock-data"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Flame } from "lucide-react"
+import type { TodaySummary, OverallStats } from "./dashboard-types"
+
+interface Props {
+  todaySummary: TodaySummary
+  overallStats: OverallStats
+  profileName: string | null
+  userEmail: string
+}
 
 function getGreeting() {
   const hour = new Date().getHours()
@@ -21,9 +28,10 @@ function formatDate() {
   })
 }
 
-export function WelcomeSection() {
+export function WelcomeSection({ todaySummary, overallStats, profileName, userEmail }: Props) {
   const greeting = getGreeting()
   const date = formatDate()
+  const name = profileName || userEmail.split("@")[0] || "Athlete"
 
   return (
     <div className="space-y-6">
@@ -31,12 +39,12 @@ export function WelcomeSection() {
         <div className="flex items-center gap-4">
           <Avatar className="h-11 w-11 border-2 border-border/40 shadow-md">
             <AvatarFallback className="bg-card text-sm font-bold text-foreground">
-              {currentUser.initials}
+              {name.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div>
             <h1 className="text-xl font-bold tracking-tight text-primary-foreground sm:text-2xl">
-              {greeting}, {currentUser.name.split(" ")[0]}
+              {greeting}, {name}
             </h1>
             <p className="text-sm text-Secondary">{date}</p>
           </div>

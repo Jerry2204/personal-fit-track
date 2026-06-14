@@ -214,9 +214,151 @@
 - Frontend `next build` — 17 routes, all clean
 - Backend `tsc --noEmit` — clean
 
+## Phase: Shoe Mileage Tracker
+
+### Completed (Date: 2026-06-14)
+
+**Backend — ShoesModule**
+- `shoes.module.ts`, `shoes.controller.ts`, `shoes.service.ts`
+- `dto/create-shoe.dto.ts`, `dto/update-shoe.dto.ts`
+- CRUD operations: `GET /shoes`, `GET /shoes/:id`, `POST /shoes`, `PATCH /shoes/:id`, `DELETE /shoes/:id`
+- `PATCH /shoes/:id/retire` — sets `isActive = false`
+- Mileage computed live from `RunActivity` aggregation (sum of `distanceKm` per shoe) — not reliant on cached `currentMileageKm` field
+- `findOne()` returns enriched detail: `currentMileageKm`, `totalRuns`, `mileageHistory[]` (monthly distance grouped by year-month)
+- JWT auth guard applied
+
+**Frontend — Shoes List (`/shoes`)**
+- Card grid showing brand + model, purchase date, mileage progress bar, total km, max km
+- Warning indicators: amber "WARNING" badge at ≥80%, red "MAXED" badge at ≥100%, "RETIRED" badge for inactive shoes
+- Active/All toggle filter
+- Add Shoe dialog (brand, model, purchase date, max mileage)
+- Delete with AlertDialog confirmation
+- Loading skeleton (3 placeholder cards), empty state (no shoes), error state
+- Responsive grid: 1 col mobile, 2 col tablet, 3 col desktop
+
+**Frontend — Shoe Detail (`/shoes/[id]`)**
+- Header with brand/model, warning/retired badges, Retire + Delete buttons
+- Large mileage progress card: current/max km display, color-coded progress bar (green → amber → red), warning message
+- Mileage history section: horizontal bar chart per month, labels (month + distance), empty state when no data
+- Back button, error state
+
+**Integration**
+- Sidebar nav updated with `/shoes` (SportShoe icon, between Running and Exercises)
+- Topbar page title mapping added for `/shoes` → "Shoes"
+
+**Build Verification**
+- Frontend `next build` — 18 routes, all clean
+- Backend `tsc --noEmit` — clean
+
+## Phase: Analytics Dashboard
+
+### Completed (Date: 2026-06-14)
+
+**Backend — DashboardModule**
+- `dashboard.module.ts`, `dashboard.controller.ts`, `dashboard.service.ts`
+- `GET /dashboard/analytics` (JWT guarded) — single endpoint returning all dashboard data:
+  - **todaySummary**: today's workout/run status, calories burned, streak days
+  - **overallStats**: total workouts, total distance, total duration, current streak
+  - **weeklyProgress**: 7-day breakdown with sessions + km per day
+  - **weeklyTargets**: sessions/km completed vs profile targets (defaults: 4 sessions, 20 km)
+  - **recentWorkouts** (4): date label, type, duration, exercise count, volume
+  - **recentRuns** (3): date label, distance, duration, formatted pace, type
+  - **goals** (3 active): with deadline formatting, type label mapping
+  - **bodyProgress**: current/start/target weight, weight change, last measurement
+  - **bodyProgressTrend**: last 30 weight entries for chart
+  - **personalRecords**: strongest lift + longest run with dates
+  - **profileName**: user's name from profile for greeting
+  - **charts**:
+    - workoutVolume: weekly total volume (∑ weight×reps) for 12 weeks
+    - runningDistance: weekly total distance for 12 weeks
+    - runningPace: weekly average pace for 12 weeks (minutes/km)
+    - weightTrend: all body weight entries with dates
+    - goalCompletion: monthly goals created vs completed for 6 months
+    - habitConsistency: weekly habit completion rate for 12 weeks
+
+**Frontend — Recharts Chart Components**
+- `components/dashboard/charts/workout-volume-chart.tsx` — bar chart
+- `components/dashboard/charts/running-distance-chart.tsx` — bar chart
+- `components/dashboard/charts/running-pace-chart.tsx` — line chart, reversed Y axis, formatted pace
+- `components/dashboard/charts/weight-trend-chart.tsx` — line chart, domain padding, formatted dates
+- `components/dashboard/charts/goal-completion-chart.tsx` — grouped bar chart (completed + total), legend
+- `components/dashboard/charts/habit-consistency-chart.tsx` — bar chart with % axis
+
+All charts: responsive (ResponsiveContainer), styled tooltips, empty states, theme-aware hsl colors.
+
+**Frontend — Dashboard Page Rewrite**
+- `app/(dashboard)/dashboard/page.tsx` — fetches real data from API, no more mock data
+- Charts grid: 3 cols desktop, 2 tablet, 1 mobile
+- Loading skeleton, error state handling via TanStack Query
+
+**Frontend — Component Prop Refactoring**
+- `welcome-section.tsx` — accepts props (todaySummary, overallStats, profileName, userEmail)
+- `weekly-overview.tsx` — accepts props (weeklyProgress, weeklyTargets)
+- `goal-card.tsx` — accepts goals prop, dynamic type labels
+- `body-progress-summary.tsx` — accepts bodyProgress prop, handles gain/loss
+- `personal-records-summary.tsx` — accepts personalRecords prop
+- `dashboard-types.ts` — shared TypeScript interfaces
+
+**Build Verification**
+- Frontend `next build` — 18 routes, all clean
+- Backend `tsc --noEmit` — clean
+
+## Phase: Yearly Report
+
+### Completed (Date: 2026-06-14)
+
+**Backend — ReportsModule Enhancement**
+- `getYearly(userId, year?)` added to `ReportsService`
+- `dto/query-yearly.dto.ts` — optional year param (defaults to current)
+- `GET /reports/yearly?year=` (JWT guarded) — dynamically generates yearly report:
+  - **summary**: totalWorkouts, totalVolume, totalRunningDistance, totalRunningDuration, averagePace, goalCompletionRate, goalsCompleted, totalGoals, yearlyConsistency (% of tracked days with activity), weightChange, startWeight, currentWeight, trackedDays, completedDays
+  - **mostConsistentMonth**: month name + consistency rate
+  - **monthlyBreakdown[12]**: per-month workout count, volume, running distance, running duration
+  - **monthlyConsistency[12]**: per-month consistency rate
+  - **achievements**: strongest lift, longest run, fastest run *within the year* (with dates)
+  - **personalRecords**: all-time strongest lift, longest run, fastest run
+
+**Frontend — Reports Page Refactor**
+- `/reports` page now has Monthly / Yearly tab navigation (pill-style toggle)
+- **Yearly view**: 8 summary cards (workouts, volume, running distance, run duration, avg pace, goal completion, consistency, weight change)
+  - 4 Recharts in 2×2 grid: monthly workout volume (bar), monthly running distance (bar), monthly consistency (line), best achievements list (with trophy icons)
+  - All-time personal records section
+  - Most consistent month highlight card with medal icon
+  - Year-only selector dropdown, print support
+- **Monthly view** unchanged but extracted into `MonthlyView` component
+- Both views share `SummaryCard`, `ReportSkeleton`, tooltip style, `formatPace`
+
+**Build Verification**
+- Frontend `next build` — 19 routes, all clean
+- Backend `tsc --noEmit` — clean
+
+## Phase: Profile & Settings
+
+### Completed (Date: 2026-06-14)
+
+**Backend — ProfileModule**
+- `profile.module.ts`, `profile.controller.ts`, `profile.service.ts`
+- `dto/update-profile.dto.ts` — all fields optional: name, age, gender, heightCm, currentWeightKg, fitnessGoal, activityLevel, targetWeightKg, weeklyWorkoutTarget, weeklyRunningTargetKm — with class-validator decorators, enum validation from Prisma client
+- `GET /profile` (JWT guarded) — returns `{ id, email, profile }` (profile is null if not set)
+- `PUT /profile` (JWT guarded) — upserts profile (creates if not exists, updates if exists)
+- Registered in `AppModule`
+
+**Frontend — Settings Page (`/settings`)**
+- Card-based form layout with 4 sections:
+  - **Account**: email (read-only)
+  - **Personal Information**: name, age, gender (Select), heightCm
+  - **Fitness Details**: current weight, target weight, fitness goal (Select), activity level (Select)
+  - **Weekly Targets**: workouts per week, weekly running target
+- Fetches profile on mount via `useQuery(["profile"])`, pre-fills form
+- Submits via `useMutation` → `PUT /profile` → toast.success / toast.error
+- Loading skeleton, error state
+- Nav link already existed in sidebar + topbar (`/settings` → "Settings")
+- `api.put()` added to frontend `api.ts` (was missing)
+
+**Build Verification**
+- Frontend `next build` — 20 routes (`/settings` added), all clean
+- Backend `tsc --noEmit` — clean
+
 ### Next Steps
 
-1. Implement **ProfileModule** (backend) + Settings page (frontend)
-2. Wire dashboard stats to real API data instead of mock data
-3. Implement **ShoesModule** + shoe mileage tracker
-4. Implement **DashboardModule** backend for aggregated stats
+1. Implement **Workout Plan Feature** (backend + frontend)
